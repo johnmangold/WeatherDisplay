@@ -5,10 +5,12 @@
  */
 package weatherdisplay;
 
+import javax.swing.*;
+
 /**
  *
  * @author 1018560
  */
-public class DisplaysPanel {
+public class DisplaysPanel extends JPanel {
     
 }

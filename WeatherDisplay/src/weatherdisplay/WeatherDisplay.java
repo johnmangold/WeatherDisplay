@@ -8,6 +8,8 @@ package weatherdisplay;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -22,6 +24,7 @@ public class WeatherDisplay {
     private static void createAndShowGui()
     {
         JFrame frame = new JFrame("Weather Information");
+        frame.setJMenuBar(new MenuBar());
         frame.setLayout(new FlowLayout());
         
         frame.pack();

@@ -5,10 +5,12 @@
  */
 package weatherdisplay;
 
+import javax.swing.*;
+
 /**
  *
  * @author 1018560
  */
-public class ChartPanel {
+public class ChartPanel extends JPanel {
     
 }
