@@ -7,6 +7,14 @@ package weatherdisplay;
 
 import javax.swing.*;
 import java.awt.FlowLayout;
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.parsers.ParserConfigurationException;
+import org.xml.sax.SAXException;
 
 /**
  *
@@ -17,6 +25,9 @@ public class WeatherDisplay {
     /**
      * @param args the command line arguments
      */
+    private static Map<String, List<Weather>> allWeather;
+    private static final File main = new File("xml/");
+    private static final File[] listOfFiles = main.listFiles();
     
     private static void createAndShowGui()
     {
@@ -31,8 +42,19 @@ public class WeatherDisplay {
         frame.setVisible(true);
     }
     
+    private static void readDirXml() throws ParserConfigurationException, SAXException, IOException {
+        XmlReader reader = new XmlReader(listOfFiles);
+        allWeather = reader.allWeather;
+    }
+    
     public static void main(String[] args) {
-        // TODO code application logic here
+        try {
+            // TODO code application logic here
+            readDirXml();
+        } catch (ParserConfigurationException | SAXException | IOException ex) {
+            Logger.getLogger(WeatherDisplay.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         SwingUtilities.invokeLater(() -> {
             createAndShowGui();
         });

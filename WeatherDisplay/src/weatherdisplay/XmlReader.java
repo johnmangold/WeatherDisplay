@@ -5,9 +5,13 @@
  */
 package weatherdisplay;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -22,18 +26,20 @@ import org.xml.sax.SAXException;
  * @author 1018560
  */
 public class XmlReader {
-    String filename;
-    List<Weather> weatherList;
+    Map<String, List<Weather> > allWeather;
     
-    public XmlReader(String xmlFilename) {
-        this.filename = xmlFilename;
-        this.weatherList = new ArrayList<>();
+    public XmlReader(File[] fileList) throws ParserConfigurationException, SAXException, IOException {
+        this.allWeather = new HashMap();
+        for (File file : fileList) {
+            allWeather.put(file.toString().substring(0, file.toString().length()-4), this.read(file.toString()));
+        }
     }
     
-    private void read() throws ParserConfigurationException, SAXException, IOException {
+    private List<Weather> read(String filename) throws ParserConfigurationException, SAXException, IOException {
+        List<Weather> weatherList = new ArrayList();
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
-        Document document = builder.parse(ClassLoader.getSystemResourceAsStream("xml/"+filename));
+        Document document = builder.parse(new FileInputStream(filename));
         
         NodeList nodeList = document.getDocumentElement().getChildNodes();
         
@@ -91,20 +97,6 @@ public class XmlReader {
                 weatherList.add(weather);
             }
         }
+        return weatherList;
     }
-}
-
-class Weather {
-    String date;
-    String time;
-    String temperature;
-    String humidity;
-    String barometer;
-    String windspeed;
-    String winddirection;
-    String windgust;
-    String windchill;
-    String heatindex;
-    String uvindex;
-    String rainfall;
 }
