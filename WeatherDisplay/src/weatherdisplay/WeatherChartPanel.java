@@ -28,9 +28,9 @@ import org.jfree.data.xy.XYSeriesCollection;
  *
  * @author Joseph Mowry
  */
-public class ChartPanel extends JPanel {
+public class WeatherChartPanel extends JPanel {
     
-    public ChartPanel(){
+    public WeatherChartPanel(){
         createChartPanel();
     }
     
