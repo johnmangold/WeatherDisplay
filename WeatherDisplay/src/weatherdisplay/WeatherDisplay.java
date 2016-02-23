@@ -31,10 +31,10 @@ public class WeatherDisplay {
         JFrame frame = new JFrame("Weather Information");
         frame.setJMenuBar(new MenuBar());
         frame.setLayout(new FlowLayout());
-        frame.setContentPane(new WeatherGraph());
+        frame.add(new WeatherGraph());
+        frame.add(new OptionsPanel());
         
         frame.pack();
-        frame.setSize(800, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationByPlatform(true);
         frame.setVisible(true);
