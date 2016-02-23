@@ -13,6 +13,12 @@ import javax.swing.*;
  * @author 1018560
  */
 public class OptionsPanel extends JPanel {
+    public JComboBox dataOptionsBox;
+    public JRadioButton dailyButton;
+    public JRadioButton weeklyButton;
+    public JRadioButton monthlyButton;
+    public JRadioButton yearlyButton;
+    public JCheckBox checkbox;
     
     public OptionsPanel() {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -20,14 +26,15 @@ public class OptionsPanel extends JPanel {
         
         String[] dataOptionsList = {"Temperature", "Humidity", "Barometric Pressure",
             "Wind Speed", "UV Index", "Rainfall"};
-        JComboBox dataOptionsBox = new JComboBox(dataOptionsList);
+        dataOptionsBox = new JComboBox(dataOptionsList);
+        dataOptionsBox.setEditable(false);
         
         JLabel dataIntervalLabel = new JLabel("Choose a Data Interval");
         
-        JRadioButton dailyButton = new JRadioButton("Daily");
-        JRadioButton weeklyButton = new JRadioButton("Weekly");
-        JRadioButton monthlyButton = new JRadioButton("Monthly");
-        JRadioButton yearlyButton = new JRadioButton("Yearly");
+        dailyButton = new JRadioButton("Daily");
+        weeklyButton = new JRadioButton("Weekly");
+        monthlyButton = new JRadioButton("Monthly");
+        yearlyButton = new JRadioButton("Yearly");
         ButtonGroup group = new ButtonGroup();
         group.add(dailyButton);
         group.add(weeklyButton);
@@ -40,7 +47,7 @@ public class OptionsPanel extends JPanel {
         radioPanel.add(monthlyButton);
         radioPanel.add(yearlyButton);
         
-        JCheckBox checkbox = new JCheckBox("Snap to the beginning of the data interval");
+        checkbox = new JCheckBox("Snap to the beginning of the data interval");
         checkbox.setSelected(true);
         
         JButton previousButton = new JButton("Previous Data Set");
