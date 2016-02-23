@@ -32,12 +32,16 @@ public class WeatherDisplay {
     private static void createAndShowGui()
     {
         JFrame frame = new JFrame("Weather Information");
+        JPanel options = new OptionsPanel();
         frame.setJMenuBar(new MenuBar());
         frame.setLayout(new FlowLayout());
         
         frame.pack();
         frame.setSize(800, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //add options panel, need to change the location of the panel
+        frame.add(options);
+        
         frame.setLocationByPlatform(true);
         frame.setVisible(true);
     }
