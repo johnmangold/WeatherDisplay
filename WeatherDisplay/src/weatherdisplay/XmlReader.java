@@ -26,12 +26,12 @@ import org.xml.sax.SAXException;
  * @author 1018560
  */
 public class XmlReader {
-    Map<String, List<Weather> > allWeather;
+    List< List<Weather> > allWeather;
     
     public XmlReader(File[] fileList) throws ParserConfigurationException, SAXException, IOException {
-        this.allWeather = new HashMap();
+        this.allWeather = new ArrayList();
         for (File file : fileList) {
-            allWeather.put(file.toString().substring(0, file.toString().length()-4), this.read(file.toString()));
+            allWeather.add(this.read(file.toString()));
         }
     }
     

@@ -25,7 +25,7 @@ public class WeatherDisplay {
     /**
      * @param args the command line arguments
      */
-    private static Map<String, List<Weather>> allWeather;
+    private static List< List<Weather> > allWeather;
     private static final File main = new File("xml/");
     private static final File[] listOfFiles = main.listFiles();
     
