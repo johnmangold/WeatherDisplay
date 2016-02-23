@@ -26,16 +26,23 @@ import org.xml.sax.SAXException;
  * @author 1018560
  */
 public class XmlReader {
-    List< List<Weather> > allWeather;
+    List< List<Weather> > allWeather = new ArrayList();
+    
+    public XmlReader() {
+        
+    }
     
     public XmlReader(File[] fileList) throws ParserConfigurationException, SAXException, IOException {
-        this.allWeather = new ArrayList();
         for (File file : fileList) {
             allWeather.add(this.read(file.toString()));
         }
     }
     
-    private List<Weather> read(String filename) throws ParserConfigurationException, SAXException, IOException {
+    public XmlReader(File file) throws ParserConfigurationException, SAXException, IOException {
+        allWeather.add(this.read(file.toString()));
+    }
+    
+    protected List<Weather> read(String filename) throws ParserConfigurationException, SAXException, IOException {
         List<Weather> weatherList = new ArrayList();
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();

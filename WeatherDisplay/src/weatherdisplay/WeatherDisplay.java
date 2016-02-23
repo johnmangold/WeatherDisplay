@@ -22,10 +22,7 @@ import org.xml.sax.SAXException;
  */
 public class WeatherDisplay {
 
-    /**
-     * @param args the command line arguments
-     */
-    private static List< List<Weather> > allWeather;
+    public static List< List<Weather> > allWeather;
     private static final File main = new File("xml/");
     private static final File[] listOfFiles = main.listFiles();
     
@@ -46,6 +43,7 @@ public class WeatherDisplay {
     private static void readDirXml() throws ParserConfigurationException, SAXException, IOException {
         XmlReader reader = new XmlReader(listOfFiles);
         allWeather = reader.allWeather;
+        System.out.println(allWeather.size());
     }
     
     public static void main(String[] args) {
