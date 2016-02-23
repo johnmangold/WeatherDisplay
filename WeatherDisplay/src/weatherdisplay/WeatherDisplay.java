@@ -43,7 +43,6 @@ public class WeatherDisplay {
     private static void readDirXml() throws ParserConfigurationException, SAXException, IOException {
         XmlReader reader = new XmlReader(listOfFiles);
         allWeather = reader.allWeather;
-        System.out.println(allWeather.size());
     }
     
     public static void main(String[] args) {
