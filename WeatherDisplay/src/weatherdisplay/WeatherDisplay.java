@@ -22,10 +22,7 @@ import org.xml.sax.SAXException;
  */
 public class WeatherDisplay {
 
-    /**
-     * @param args the command line arguments
-     */
-    private static Map<String, List<Weather>> allWeather;
+    public static List< List<Weather> > allWeather;
     private static final File main = new File("xml/");
     private static final File[] listOfFiles = main.listFiles();
     
@@ -35,9 +32,10 @@ public class WeatherDisplay {
         JPanel options = new OptionsPanel();
         frame.setJMenuBar(new MenuBar());
         frame.setLayout(new FlowLayout());
+        frame.add(new WeatherGraph());
+        frame.add(new OptionsPanel());
         
         frame.pack();
-        frame.setSize(800, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //add options panel, need to change the location of the panel
         frame.add(options);
