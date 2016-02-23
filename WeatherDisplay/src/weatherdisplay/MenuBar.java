@@ -8,12 +8,6 @@ package weatherdisplay;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 
 /**
  *
@@ -53,23 +47,8 @@ public class MenuBar extends JMenuBar {
         aboutMenuItem.setMnemonic(KeyEvent.VK_A);
         aboutMenuItem.setToolTipText("Information about the developers");
         
-        JMenuItem zackMenuItem = new JMenuItem("Zack Morris");
-        zackMenuItem.setMnemonic(KeyEvent.VK_Z);
-        zackMenuItem.setToolTipText("Zack Morris needs no tool tip");
-        zackMenuItem.addActionListener((ActionEvent event) -> {
-            BufferedImage image = null;
-            try {
-                image = ImageIO.read(new File("./images/zms.jpg"));
-            } catch (IOException ex) {
-                Logger.getLogger(MenuBar.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            JLabel picLabel = new JLabel(new ImageIcon(image));
-            JOptionPane.showMessageDialog(null, picLabel, "Zack Attack!!!", JOptionPane.PLAIN_MESSAGE, null);
-        });
-        
         help.add(instructionsMenuItem);
         help.add(aboutMenuItem);
-        help.add(zackMenuItem);
         
         this.add(file);
         this.add(help);
