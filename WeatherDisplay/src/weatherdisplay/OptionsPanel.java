@@ -5,6 +5,7 @@
  */
 package weatherdisplay;
 
+import java.awt.Dimension;
 import javax.swing.*;
 
 /**
@@ -19,10 +20,10 @@ public class OptionsPanel extends JPanel {
     
     private void initComponents() {
         DataPane = new javax.swing.JTabbedPane();
-        DailyTab = new javax.swing.JTabbedPane();
-        WeeklyTab = new javax.swing.JTabbedPane();
-        MonthlyTab = new javax.swing.JTabbedPane();
-        YearlyTab = new javax.swing.JTabbedPane();
+        WeatherGraph DailyTab = new WeatherGraph();
+        WeatherGraph WeeklyTab = new WeatherGraph();
+        WeatherGraph MonthlyTab = new WeatherGraph();
+        WeatherGraph YearlyTab = new WeatherGraph();
         average = new javax.swing.JRadioButton();
         MinMax = new javax.swing.JRadioButton();
         DataFields = new javax.swing.JComboBox();
@@ -31,10 +32,10 @@ public class OptionsPanel extends JPanel {
         jLabel1 = new javax.swing.JLabel();
         ButtonGroup group = new ButtonGroup();
 
-        DataPane.addTab("Daily", new WeatherGraph());
-        DataPane.addTab("Weekly", new WeatherGraph());
-        DataPane.addTab("Monthly", new WeatherGraph());
-        DataPane.addTab("Yearly", new WeatherGraph());
+        DataPane.addTab("Daily", DailyTab);
+        DataPane.addTab("Weekly", WeeklyTab);
+        DataPane.addTab("Monthly", MonthlyTab);
+        DataPane.addTab("Yearly", YearlyTab);
 
         average.setText("Average");
         average.setToolTipText("Show Average of Data");
@@ -178,15 +179,15 @@ public class OptionsPanel extends JPanel {
     } 
 
     // Variables declaration - do not modify                     
-    private javax.swing.JTabbedPane DailyTab;
+    private WeatherGraph DailyTab;
     private javax.swing.JComboBox DataFields;
     private javax.swing.JTabbedPane DataPane;
     private javax.swing.JRadioButton MinMax;
     private javax.swing.JButton NextData;
     private javax.swing.JButton PrevData;
-    private javax.swing.JTabbedPane MonthlyTab;
-    private javax.swing.JTabbedPane WeeklyTab;
-    private javax.swing.JTabbedPane YearlyTab;
+    private WeatherGraph MonthlyTab;
+    private WeatherGraph WeeklyTab;
+    private WeatherGraph YearlyTab;
     private javax.swing.JRadioButton average;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration                   

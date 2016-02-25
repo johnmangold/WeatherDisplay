@@ -38,7 +38,6 @@ public class WeatherDisplay {
         frame.pack();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //add options panel, need to change the location of the panel
-        frame.add(options);
         
         frame.setLocationByPlatform(true);
         frame.setVisible(true);
