@@ -26,6 +26,8 @@ public class OptionsPanel extends JPanel {
         average = new javax.swing.JRadioButton();
         MinMax = new javax.swing.JRadioButton();
         DataFields = new javax.swing.JComboBox();
+        NextData = new javax.swing.JButton();
+        PrevData = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         ButtonGroup group = new ButtonGroup();
 
@@ -45,7 +47,7 @@ public class OptionsPanel extends JPanel {
         });
 
         MinMax.setText("Min/Max");
-        MinMax.setToolTipText("Show MIn/Max of Data");
+        MinMax.setToolTipText("Show Min/Max of Data");
         group.add(MinMax);
         MinMax.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -54,7 +56,7 @@ public class OptionsPanel extends JPanel {
         });
 
         DataFields.setMaximumRowCount(10);
-        DataFields.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Temperature", "Humidity", "Barometer", "Wind Speed", "Wind Direction", "Wind Gust", "Wind Chill", "Heat Index", "UV Index", "Rainfall" }));
+        DataFields.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Temperature", "Humidity", "Barometer", "Wind Speed", "UV Index", "Rainfall" }));
         DataFields.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DataFieldsActionPerformed(evt);
@@ -62,6 +64,12 @@ public class OptionsPanel extends JPanel {
         });
         
         jLabel1.setText("Choose Data Field to Display");
+        
+        NextData.setText("Next");
+        NextData.setToolTipText("View Next Data Set");
+
+        PrevData.setText("Previous");
+        PrevData.setToolTipText("View Previous Data Set");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -70,18 +78,25 @@ public class OptionsPanel extends JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(average)
-                        .addGap(18, 18, 18)
-                        .addComponent(MinMax))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(DataFields, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel1))))
-                .addGap(19, 19, 19)
+                                .addContainerGap()
+                                .addComponent(average)
+                                .addGap(18, 18, 18)
+                                .addComponent(MinMax))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(DataFields, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel1))))
+                        .addGap(19, 19, 19))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(PrevData)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(NextData)
+                        .addGap(26, 26, 26)))
                 .addComponent(DataPane, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -100,9 +115,13 @@ public class OptionsPanel extends JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(MinMax)
                     .addComponent(average))
-                .addContainerGap(233, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NextData)
+                    .addComponent(PrevData))
+                .addContainerGap(192, Short.MAX_VALUE))
         );
-    }// </editor-fold>   
+    }// </editor-fold>                        
     
      private void DataFieldsActionPerformed(java.awt.event.ActionEvent evt) {                                           
         int value = DataFields.getSelectedIndex();
@@ -149,6 +168,8 @@ public class OptionsPanel extends JPanel {
     private javax.swing.JComboBox DataFields;
     private javax.swing.JTabbedPane DataPane;
     private javax.swing.JRadioButton MinMax;
+    private javax.swing.JButton NextData;
+    private javax.swing.JButton PrevData;
     private javax.swing.JTabbedPane MonthlyTab;
     private javax.swing.JTabbedPane WeeklyTab;
     private javax.swing.JTabbedPane YearlyTab;
