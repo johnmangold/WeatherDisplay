@@ -29,10 +29,10 @@ public class OptionsPanel extends JPanel {
         jLabel1 = new javax.swing.JLabel();
         ButtonGroup group = new ButtonGroup();
 
-        DataPane.addTab("Daily", DailyTab);
-        DataPane.addTab("Weekly", WeeklyTab);
-        DataPane.addTab("Monthly", MonthlyTab);
-        DataPane.addTab("Yearly", YearlyTab);
+        DataPane.addTab("Daily", new WeatherGraph());
+        DataPane.addTab("Weekly", new WeatherGraph());
+        DataPane.addTab("Monthly", new WeatherGraph());
+        DataPane.addTab("Yearly", new WeatherGraph());
 
         average.setText("Average");
         average.setToolTipText("Show Average of Data");
