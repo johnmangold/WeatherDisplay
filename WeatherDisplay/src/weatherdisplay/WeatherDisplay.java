@@ -33,7 +33,7 @@ public class WeatherDisplay {
         frame.setJMenuBar(new MenuBar());
         frame.setLayout(new FlowLayout());
         //frame.add(new WeatherGraph());
-        frame.add(new OptionsPanel());
+        frame.add(options);
         
         frame.pack();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
