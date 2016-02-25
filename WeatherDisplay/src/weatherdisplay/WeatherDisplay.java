@@ -35,6 +35,7 @@ public class WeatherDisplay {
         //frame.add(new WeatherGraph());
         frame.add(new OptionsPanel());
         //frame.add(options);
+        frame.add(new DisplaysPanel());
 
         
         frame.pack();
