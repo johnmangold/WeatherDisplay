@@ -26,12 +26,21 @@ public class WeatherGraph extends JPanel {
     private void createWeatherGraph(){
         
         XYSeries series = new XYSeries("Data");
-        
-        series.add(1,1);
-        series.add(2,7);
-        series.add(3,3);
-        series.add(4,5);
-        series.add(5,14);
+                
+        for(int i = 0; i < 1; i++)
+        {
+            for(int j = 0; j < 100; j++)
+            {
+                String thing = WeatherDisplay.allWeather.get(i).get(j).temperature;
+                String thing2 = WeatherDisplay.allWeather.get(i).get(j).temperature;
+
+                double first = Double.parseDouble(thing);
+                double second = Double.parseDouble(thing2);
+
+                series.add(first, second);
+            }
+        }
+
         
         XYSeriesCollection dataset = new XYSeriesCollection(series);
         
