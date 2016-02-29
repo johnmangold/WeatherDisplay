@@ -35,7 +35,7 @@ public class WeatherGraph extends JPanel {
     
     private void createWeatherGraph(){
         
-        final CategoryDataset dataset = createDataset();
+        CategoryDataset dataset = createDataset();
 
         
         // Create the chart
@@ -47,7 +47,7 @@ public class WeatherGraph extends JPanel {
             PlotOrientation.VERTICAL,  // orientation
             true,                      // include legend
             true,                      // tooltips
-            false                      // urls
+            true                      // urls
         );
         
 //        chart.setBackgroundPaint(Color.white);
@@ -83,21 +83,21 @@ public class WeatherGraph extends JPanel {
         
         // Row keys...
         final String series1 = "First";
-        final String series2 = "Second";
-        final String series3 = "Third";
+//        final String series2 = "Second";
+//        final String series3 = "Third";
 
         // Column keys...
-        final String type1 = "Type 1";
-        final String type2 = "Type 2";
-        final String type3 = "Type 3";
-        final String type4 = "Type 4";
-        final String type5 = "Type 5";
-        final String type6 = "Type 6";
-        final String type7 = "Type 7";
-        final String type8 = "Type 8";
+//        final String type1 = "Type 1";
+//        final String type2 = "Type 2";
+//        final String type3 = "Type 3";
+//        final String type4 = "Type 4";
+//        final String type5 = "Type 5";
+//        final String type6 = "Type 6";
+//        final String type7 = "Type 7";
+//        final String type8 = "Type 8";
 
         // Create the dataset...
-        final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
         /*
         dataset.addValue(1.0, series1, type1);
@@ -137,9 +137,9 @@ public class WeatherGraph extends JPanel {
         for(List<Weather> month : WeatherDisplay.allWeather){
             for(Weather record : month){
                 try{
-                    dataset.addValue(Double.parseDouble(record.temperature), series1, type1);
+                    dataset.addValue(Double.parseDouble(record.temperature), series1, record.date);
                 }catch (NullPointerException ex) {
-                    dataset.addValue(1, series1, type1);
+                    dataset.addValue(1, series1, record.date);
                 }
             }
         }
