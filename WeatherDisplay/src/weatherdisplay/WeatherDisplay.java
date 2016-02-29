@@ -7,6 +7,9 @@ package weatherdisplay;
 
 import javax.swing.*;
 import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -31,9 +34,18 @@ public class WeatherDisplay {
         JFrame frame = new JFrame("Weather Information");
         JPanel options = new OptionsPanel();
         frame.setJMenuBar(new MenuBar());
-        frame.setLayout(new FlowLayout());
-        frame.add(options);
-        frame.add(new DisplaysPanel());
+        frame.setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+        
+        c.gridx = 0;
+        c.gridy = 0;
+        c.fill = GridBagConstraints.BOTH;
+        frame.add(options, c);
+        
+        c.gridx = 0;
+        c.gridy = 1;
+        c.fill = GridBagConstraints.HORIZONTAL;
+        frame.add(new DisplaysPanel(), c);
         
         frame.pack();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

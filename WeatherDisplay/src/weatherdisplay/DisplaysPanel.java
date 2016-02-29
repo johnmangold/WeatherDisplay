@@ -6,7 +6,6 @@
 package weatherdisplay;
 
 import javax.swing.*;
-import com.genlogic.*;
 
 /**
  *
@@ -14,12 +13,9 @@ import com.genlogic.*;
  */
 public class DisplaysPanel extends JPanel {
     public static java.util.List< java.util.List<Weather> > data;
-    GlgBean bean;
 
     public DisplaysPanel() {
-        this.bean = new GlgBean();
-        data = WeatherDisplay.allWeather;
-        
-        bean.SetDrawingName("bar1.g");
+        this.add(new DisplayItems());
     }
+    
 }
