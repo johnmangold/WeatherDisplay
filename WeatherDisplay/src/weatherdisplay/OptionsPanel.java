@@ -5,7 +5,6 @@
  */
 package weatherdisplay;
 
-import java.awt.Dimension;
 import javax.swing.*;
 
 /**

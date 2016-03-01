@@ -44,14 +44,22 @@ public class MenuBar extends JMenuBar {
         openMenuItem.setToolTipText("Open Data File");
         openMenuItem.addActionListener((ActionEvent event) -> {
             JFileChooser fileChooser = new JFileChooser();
-            fileChooser.setDialogTitle("Open additional XML file");
+            fileChooser.setDialogTitle("Open directory containing XML files");
+            fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            fileChooser.setAcceptAllFileFilterUsed(false);
+            
             FileNameExtensionFilter filter = new FileNameExtensionFilter("xml files (*.xml)", "xml");
             fileChooser.setFileFilter(filter);
             if(fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
                 extraFile = fileChooser.getSelectedFile();
+                File[] list = extraFile.listFiles();
                 XmlReader reader = new XmlReader();
                 try {
-                    WeatherDisplay.allWeather.add(reader.read(extraFile.toString()));
+                    for(File each : list ) {
+                        if(each.toString().endsWith(".xml") || each.toString().endsWith(".XML")) {
+                            WeatherDisplay.allWeather.add(reader.read(each.toString()));
+                        }
+                    }
                 } catch (ParserConfigurationException | SAXException | IOException ex) {
                     Logger.getLogger(MenuBar.class.getName()).log(Level.SEVERE, null, ex);
                 }
