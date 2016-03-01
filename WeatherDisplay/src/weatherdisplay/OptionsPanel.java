@@ -5,6 +5,7 @@
  */
 package weatherdisplay;
 
+import java.awt.Dimension;
 import javax.swing.*;
 
 /**
@@ -19,10 +20,10 @@ public class OptionsPanel extends JPanel {
     
     private void initComponents() {
         DataPane = new javax.swing.JTabbedPane();
-        DailyTab = new javax.swing.JTabbedPane();
-        WeeklyTab = new javax.swing.JTabbedPane();
-        MonthlyTab = new javax.swing.JTabbedPane();
-        YearlyTab = new javax.swing.JTabbedPane();
+        WeatherGraph DailyTab = new WeatherGraph("Day");
+        WeatherGraph WeeklyTab = new WeatherGraph("Week");
+        WeatherGraph MonthlyTab = new WeatherGraph("Month");
+        WeatherGraph YearlyTab = new WeatherGraph("Year");
         average = new javax.swing.JRadioButton();
         MinMax = new javax.swing.JRadioButton();
         DataFields = new javax.swing.JComboBox();
@@ -31,10 +32,10 @@ public class OptionsPanel extends JPanel {
         jLabel1 = new javax.swing.JLabel();
         ButtonGroup group = new ButtonGroup();
 
-        DataPane.addTab("Daily", new WeatherGraph());
-        DataPane.addTab("Weekly", new WeatherGraph());
-        DataPane.addTab("Monthly", new WeatherGraph());
-        DataPane.addTab("Yearly", new WeatherGraph());
+        DataPane.addTab("Daily", DailyTab);
+        DataPane.addTab("Weekly", WeeklyTab);
+        DataPane.addTab("Monthly", MonthlyTab);
+        DataPane.addTab("Yearly", YearlyTab);
 
         average.setText("Average");
         average.setToolTipText("Show Average of Data");
@@ -67,9 +68,19 @@ public class OptionsPanel extends JPanel {
         
         NextData.setText("Next");
         NextData.setToolTipText("View Next Data Set");
+        NextData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NextDataActionPerformed(evt);
+            }
+        });
 
         PrevData.setText("Previous");
         PrevData.setToolTipText("View Previous Data Set");
+        PrevData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PrevDataActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -97,7 +108,7 @@ public class OptionsPanel extends JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(NextData)
                         .addGap(26, 26, 26)))
-                .addComponent(DataPane, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
+                .addComponent(DataPane)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -138,17 +149,9 @@ public class OptionsPanel extends JPanel {
                 break;
             case 3: //graph wind speed
                 break;
-            case 4: //graph wind direction
+            case 4: //grpah UV Index
                 break;
-            case 5: // graph wind gust
-                break;
-            case 6: //graph wind chill
-                break;
-            case 7: //graph Heat Index
-                break;
-            case 8: //grpah UV Index
-                break;
-            case 9: //graph rainfall
+            case 5: //graph rainfall
                 break;
         }
     }
@@ -162,17 +165,29 @@ public class OptionsPanel extends JPanel {
         // TODO add your handling code here:
         //find min/max of selected data type(s)
     }
+      
+      private void NextDataActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+        //go to next data set
+        //check for end of set
+    } 
+      
+      private void PrevDataActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+        //go to prev data set
+          //check for beg of set
+    } 
 
     // Variables declaration - do not modify                     
-    private javax.swing.JTabbedPane DailyTab;
+    private WeatherGraph DailyTab;
     private javax.swing.JComboBox DataFields;
     private javax.swing.JTabbedPane DataPane;
     private javax.swing.JRadioButton MinMax;
     private javax.swing.JButton NextData;
     private javax.swing.JButton PrevData;
-    private javax.swing.JTabbedPane MonthlyTab;
-    private javax.swing.JTabbedPane WeeklyTab;
-    private javax.swing.JTabbedPane YearlyTab;
+    private WeatherGraph MonthlyTab;
+    private WeatherGraph WeeklyTab;
+    private WeatherGraph YearlyTab;
     private javax.swing.JRadioButton average;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration                   
