@@ -195,7 +195,7 @@ public class WeatherGraph extends JPanel {
             PlotOrientation.VERTICAL,  // orientation
             true,                      // include legend
             true,                      // tooltips
-            true                      // urls
+            true                       // urls
         );
         
 //        chart.setBackgroundPaint(Color.white);
@@ -209,11 +209,12 @@ public class WeatherGraph extends JPanel {
                 return new Dimension(700, 500);
             }
         };
-        chartPanel.setHorizontalAxisTrace(true);
-        chartPanel.setVerticalAxisTrace(true);
+        chartPanel.setDomainZoomable(true);
+        chartPanel.setRangeZoomable(true);
         chartPanel.setMouseWheelEnabled(true);
         chartPanel.setBackground(Color.lightGray);
         chart.setBackgroundPaint(Color.white);
+        chart.getPlot();
         
         final CategoryPlot plot = (CategoryPlot) chart.getPlot();
         plot.setBackgroundPaint(Color.lightGray);
