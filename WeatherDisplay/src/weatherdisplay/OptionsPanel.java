@@ -20,10 +20,10 @@ public class OptionsPanel extends JPanel {
     
     private void initComponents() {
         DataPane = new javax.swing.JTabbedPane();
-        WeatherGraph DailyTab = new WeatherGraph();
-        WeatherGraph WeeklyTab = new WeatherGraph();
-        WeatherGraph MonthlyTab = new WeatherGraph();
-        WeatherGraph YearlyTab = new WeatherGraph();
+        WeatherGraph DailyTab = new WeatherGraph("Day");
+        WeatherGraph WeeklyTab = new WeatherGraph("Week");
+        WeatherGraph MonthlyTab = new WeatherGraph("Month");
+        WeatherGraph YearlyTab = new WeatherGraph("Year");
         average = new javax.swing.JRadioButton();
         MinMax = new javax.swing.JRadioButton();
         DataFields = new javax.swing.JComboBox();

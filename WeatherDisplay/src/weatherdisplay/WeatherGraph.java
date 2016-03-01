@@ -32,11 +32,13 @@ public class WeatherGraph extends JPanel {
     public WeatherGraph(){
         createWeatherGraph();
     }
+    public WeatherGraph(String tabName){
+        createWeatherGraphUsingString(tabName);
+    }
     
     private void createWeatherGraph(){
         
         CategoryDataset dataset = createDataset();
-
         
         // Create the chart
         final JFreeChart chart = ChartFactory.createLineChart(
@@ -179,5 +181,44 @@ public class WeatherGraph extends JPanel {
         
         return dataset;
 
+    }
+
+    private void createWeatherGraphUsingString(String tabName) {
+        CategoryDataset dataset = createDataset();
+        
+        // Create the chart
+        final JFreeChart chart = ChartFactory.createLineChart(
+            "Weather",                 // chart title
+            "Time (" + tabName + ")",  // domain axis label
+            "Temperature",             // range axis label
+            dataset,                   // data
+            PlotOrientation.VERTICAL,  // orientation
+            true,                      // include legend
+            true,                      // tooltips
+            true                      // urls
+        );
+        
+//        chart.setBackgroundPaint(Color.white);
+//        final CategoryPlot plot = (CategoryPlot) chart.getPlot();
+//        plot.setBackgroundPaint(Color.lightGray);
+//        plot.setRangeGridlinePaint(Color.white);
+        
+        ChartPanel chartPanel = new ChartPanel(chart) {
+            @Override
+            public Dimension getPreferredSize() {
+                return new Dimension(700, 500);
+            }
+        };
+        chartPanel.setHorizontalAxisTrace(true);
+        chartPanel.setVerticalAxisTrace(true);
+        chartPanel.setMouseWheelEnabled(true);
+        chartPanel.setBackground(Color.lightGray);
+        chart.setBackgroundPaint(Color.white);
+        
+        final CategoryPlot plot = (CategoryPlot) chart.getPlot();
+        plot.setBackgroundPaint(Color.lightGray);
+        plot.setRangeGridlinePaint(Color.white);
+        
+        add(chartPanel);
     }
 }
