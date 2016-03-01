@@ -19,11 +19,18 @@ public class OptionsPanel extends JPanel {
     
     private void initComponents() {
         DataPane = new javax.swing.JTabbedPane();
-        WeatherGraph DailyTab = new WeatherGraph();
-        WeatherGraph WeeklyTab = new WeatherGraph();
-        WeatherGraph MonthlyTab = new WeatherGraph();
-        WeatherGraph YearlyTab = new WeatherGraph();
+
         DataFields = new javax.swing.JComboBox();
+        DataFields.setMaximumRowCount(10);
+        DataFields.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Temperature", "Humidity", "Barometer", "Wind Speed", "UV Index", "Rainfall" }));
+        DataFields.setSelectedIndex(1);
+       
+        
+        WeatherGraph DailyTab = new WeatherGraph("Day");
+        WeatherGraph WeeklyTab = new WeatherGraph("Week");
+        WeatherGraph MonthlyTab = new WeatherGraph("Month");
+        WeatherGraph YearlyTab = new WeatherGraph("Year");
+        
         NextData = new javax.swing.JButton();
         PrevData = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -33,13 +40,17 @@ public class OptionsPanel extends JPanel {
         DataPane.addTab("Monthly", MonthlyTab);
         DataPane.addTab("Yearly", YearlyTab);
 
-        DataFields.setMaximumRowCount(10);
-        DataFields.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Temperature", "Humidity", "Barometer", "Wind Speed", "UV Index", "Rainfall" }));
-        DataFields.addActionListener(new java.awt.event.ActionListener() {
+         DataFields.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DataFieldsActionPerformed(evt);
+                DataPane.removeAll();
+                DataPane.addTab("Daily", new WeatherGraph("Day"));
+                DataPane.addTab("Weekly", new WeatherGraph("Week"));
+                DataPane.addTab("Monthly", new WeatherGraph("Month"));
+                DataPane.addTab("Yearly", new WeatherGraph("Year"));
+                DataPane.validate();
             }
         });
+
         
         jLabel1.setText("Choose Data Field to Display");
         
@@ -55,7 +66,8 @@ public class OptionsPanel extends JPanel {
         PrevData.setToolTipText("View Previous Data Set");
         PrevData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PrevDataActionPerformed(evt);
+                //PrevDataActionPerformed(evt);
+                
             }
         });
 
@@ -106,40 +118,6 @@ public class OptionsPanel extends JPanel {
                 .addContainerGap())    
         );
     }// </editor-fold>                        
-    
-    private void DataFieldsActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        int value = DataFields.getSelectedIndex();
-        
-        switch (value)
-        {
-            case 0:
-                //graph temp
-                WeatherDisplay.dataOption = "Temperature";
-                //WeatherGraph.WeatherGraph();
-                break;
-            case 1:
-                //graph humidity
-                WeatherDisplay.dataOption = "Humidity";
-                //WeatherGraph.WeatherGraph();
-                break;
-            case 2: //graph barometer
-                WeatherDisplay.dataOption = "Barometer";
-                //WeatherGraph.WeatherGraph();
-                break;
-            case 3: //graph wind speed
-                WeatherDisplay.dataOption = "Wind Speed";
-                //WeatherGraph.WeatherGraph();
-                break;
-            case 4: //grpah UV Index
-                WeatherDisplay.dataOption = "UV Index";
-                //WeatherGraph.WeatherGraph();
-                break;
-            case 5: //graph rainfall
-                WeatherDisplay.dataOption = "Rainfall";
-                //WeatherGraph.WeatherGraph();
-                break;
-        }
-    }
       
     private void NextDataActionPerformed(java.awt.event.ActionEvent evt) {                                         
      // TODO add your handling code here:
@@ -224,7 +202,7 @@ public class OptionsPanel extends JPanel {
 
     // Variables declaration - do not modify                     
    // private WeatherGraph DailyTab;
-    private javax.swing.JComboBox DataFields;
+    public static javax.swing.JComboBox DataFields;
     private javax.swing.JTabbedPane DataPane;
     private javax.swing.JButton NextData;
     private javax.swing.JButton PrevData;
