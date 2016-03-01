@@ -79,6 +79,43 @@ public class MenuBar extends JMenuBar {
             //calculate average for the data that is being graphed
             double average = 0.0;
 //            OptionsPanel.CalcAvg();
+                       
+            /*****
+             * //first find out how many elements are being graphed
+             * //maybe set global value when the data is being graphed??
+             * 
+             * //then loop through calculating the average
+             * //also need to know which data option is being used
+             * //put inside the for loop to generate which struct element to access
+             * 
+             * for ( int i = 0; i  count; i++)
+             * {
+             * switch (dataOption)
+             * {
+             *      case "Temperature":
+             *          average += WeatherDisplay.allWeather.get().get().temperature;
+             *          break;
+             *      case "Humidity":
+             *          average +=  WeatherDisplay.allWeather.get().get().humidity;
+             *          break;
+             *      case "Barometer":
+             *          average += WeatherDisplay.allWeather.get().get().barometer;
+             *          break;
+             *      case "Wind Speed":
+             *          average += WeatherDisplay.allWeather.get().get().windspeed;
+             *          break;
+             *      case "UV Index":
+             *          average += WeatherDisplay.allWeather.get().get().uvindex;
+             *          break;
+             *      case "Rainfall":
+             *          average += WeatherDisplay.allWeather.get().get().rainfall    
+             *          break;
+             * }
+             * 
+             * average = average/count;
+             * }
+             *****/
+            
             JOptionPane.showMessageDialog(frame, "Average: " + average, "Average", JOptionPane.PLAIN_MESSAGE);
            
         });
@@ -90,7 +127,50 @@ public class MenuBar extends JMenuBar {
             //calculate min and max
             double min = 1000;
             double max = -1000;
+            double val;
             //loop through data that is graphed and find min and max
+            
+            /*****
+             * //first find out how many elements are being graphed
+             * //maybe set global value when the data is being graphed??
+             * 
+             * //then loop through finding the min and max
+             * //also need to know which data option is being used
+             * //put inside the for loop to generate which struct element to access
+             * 
+             * for ( int i = 0; i  count; i++)
+             * {
+             * switch (dataOption)
+             * {
+             *      case "Temperature":
+             *          val = WeatherDisplay.allWeather.get().get().temperature;
+             *          break;
+             *      case "Humidity":
+             *          val =  WeatherDisplay.allWeather.get().get().humidity;
+             *          break;
+             *      case "Barometer":
+             *          val = WeatherDisplay.allWeather.get().get().barometer;
+             *          break;
+             *      case "Wind Speed":
+             *          val = WeatherDisplay.allWeather.get().get().windspeed;
+             *          break;
+             *      case "UV Index":
+             *          val = WeatherDisplay.allWeather.get().get().uvindex;
+             *          break;
+             *      case "Rainfall":
+             *          val = WeatherDisplay.allWeather.get().get().rainfall    
+             *          break;
+             * }
+             * 
+             * if (val  min )
+             *      min = val;
+             * 
+             * if (val  max)
+             *      max = val;
+             * 
+             * }
+             *****/
+            
             JOptionPane.showMessageDialog(frame, "Min: " + min +  "\nMax: " + max, "Min and Max", JOptionPane.PLAIN_MESSAGE);
         });
         
