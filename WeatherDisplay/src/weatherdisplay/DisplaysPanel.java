@@ -15,7 +15,10 @@ public class DisplaysPanel extends JPanel {
     public static java.util.List< java.util.List<Weather> > data;
 
     public DisplaysPanel() {
-        this.add(new DisplayItems());
+        initialize();
     }
     
+    private void initialize() {
+        this.add(new DisplayItems());
+    }
 }
