@@ -28,6 +28,9 @@ public class WeatherDisplay {
     public static List< List<Weather> > allWeather;
     private static final File main = new File("xml/");
     private static final File[] listOfFiles = main.listFiles();
+    public static String dataOption = "Temperature";
+    //public static int[] startIndex = new int[2]; //holds the two indexes for the start data point
+    //public static int[] endIndex = new int[2]; //holds the two indexes for the end data point
     
     private static void createAndShowGui()
     {

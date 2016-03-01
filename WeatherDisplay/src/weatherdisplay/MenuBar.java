@@ -5,6 +5,7 @@
  */
 package weatherdisplay;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
 import java.awt.event.KeyEvent;
@@ -60,6 +61,34 @@ public class MenuBar extends JMenuBar {
         file.add(openMenuItem);
         file.add(exitMenuItem);
         
+        JMenu calc = new JMenu("Calculations");
+        
+        JMenuItem averageMenuItem = new JMenuItem("Average");
+        averageMenuItem.setToolTipText("Calculate Average of the Data");
+        averageMenuItem.addActionListener((ActionEvent event) -> {
+            Component frame = new JFrame();
+            //calcuate min and max
+            //calculate average for the data that is being graphed
+            double average = 0.0;
+//            OptionsPanel.CalcAvg();
+            JOptionPane.showMessageDialog(frame, "Average: " + average, "Average", JOptionPane.PLAIN_MESSAGE);
+           
+        });
+        
+        JMenuItem minMaxMenuItem = new JMenuItem("Min and Max");
+        minMaxMenuItem.setToolTipText("Calculate Min and Max of the Data");
+        minMaxMenuItem.addActionListener((ActionEvent event) -> {
+            Component frame = new JFrame();
+            //calculate min and max
+            double min = 1000;
+            double max = -1000;
+            //loop through data that is graphed and find min and max
+            JOptionPane.showMessageDialog(frame, "Min: " + min +  "\nMax: " + max, "Min and Max", JOptionPane.PLAIN_MESSAGE);
+        });
+        
+        calc.add(averageMenuItem);
+        calc.add(minMaxMenuItem);
+        
         JMenu help = new JMenu("Help");
         help.setMnemonic(KeyEvent.VK_H);
         
@@ -74,6 +103,7 @@ public class MenuBar extends JMenuBar {
         help.add(aboutMenuItem);
         
         this.add(file);
+        this.add(calc);
         this.add(help);
     }
     
