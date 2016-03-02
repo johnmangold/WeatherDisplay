@@ -118,24 +118,48 @@ public class DisplayItems extends JPanel {
             case "NE":
                 icon = new ImageIcon("images/ne.png");
                 break;
+            case "NNE":
+                icon = new ImageIcon("images/ne.png");
+                break;
+            case "ENE":
+                icon = new ImageIcon("images/ne.png");
+                break;
             case "E":
                 icon = new ImageIcon("images/east.png");
                 break;
+            case "ESE":
+                icon = new ImageIcon("images/se.png");
+                break;
             case "SE":
+                icon = new ImageIcon("images/se.png");
+                break;
+            case "SSE":
                 icon = new ImageIcon("images/se.png");
                 break;
             case "S":
                 icon = new ImageIcon("images/south.png");
                 break;
+            case "SSW":
+                icon = new ImageIcon("images/sw.png");
+                break;    
             case "SW":
                 icon = new ImageIcon("images/sw.png");
                 break;
+            case "WSW":
+                icon = new ImageIcon("images/sw.png");
+                break;    
             case "W":
                 icon = new ImageIcon("images/west.png");
+                break;
+            case "WNW":
+                icon = new ImageIcon("images/nw.png");
                 break;
             case "NW":
                 icon = new ImageIcon("images/nw.png");
                 break;
+            case "NNW":
+                icon = new ImageIcon("images/nw.png");
+                break;    
             default:
                 icon = new ImageIcon("images/cold.png");
                 break;
