@@ -11,12 +11,11 @@ import java.awt.GridBagLayout;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
-import org.jfree.data.category.CategoryDataset;
-import org.jfree.data.category.DefaultCategoryDataset;
 import org.xml.sax.SAXException;
 
 /**
@@ -33,6 +32,7 @@ public class WeatherDisplay {
     public static WeatherDataset wds = new WeatherDataset();
     public static WeatherGraph wg;
     public static int day;
+    public static int week;
     public static int month;
     public static int year;
 
@@ -68,6 +68,10 @@ public class WeatherDisplay {
     private static void readDirXml() throws ParserConfigurationException, SAXException, IOException, ParseException {
         XmlReader reader = new XmlReader(listOfFiles);
         allWeather = reader.allWeather;
+        day = allWeather.get(0).get(0).dateTime.get(Calendar.DAY_OF_MONTH);
+        week = allWeather.get(0).get(0).dateTime.get(Calendar.WEEK_OF_YEAR);
+        month = allWeather.get(0).get(0).dateTime.get(Calendar.MONTH);
+        year = allWeather.get(0).get(0).dateTime.get(Calendar.YEAR);
         wg = new WeatherGraph("It doesn't matter, it's not going to use it.");
     }
     
