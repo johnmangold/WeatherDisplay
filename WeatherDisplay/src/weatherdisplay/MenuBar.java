@@ -448,13 +448,33 @@ public class MenuBar extends JMenuBar {
         
         JMenu help = new JMenu("Help");
         help.setMnemonic(KeyEvent.VK_H);
+               
         
         JMenuItem instructionsMenuItem = new JMenuItem("Instructions");
         instructionsMenuItem.setMnemonic(KeyEvent.VK_H);
+        instructionsMenuItem.addActionListener((ActionEvent event) -> {
+            Component frame = new JFrame();
+            JOptionPane.showMessageDialog(frame,
+                    "Program Usage:" +
+                    "\nUse the combo box to select which data element to display" +
+                    "\nClick through the tabs to show different amounts of data" +
+                    "\nClicking the Next or Previuos buttons will print the next or previous data set" +
+                    "\nGoing to Calculations and clicking statistics will show calculations for the data set that is graphed" +
+                    "\nYou may add xml files by choosing File then Open and selecting and xml file"        
+                    );
+            
+        });
         
         JMenuItem aboutMenuItem = new JMenuItem("About");
         aboutMenuItem.setMnemonic(KeyEvent.VK_A);
         aboutMenuItem.setToolTipText("Information about the developers");
+        aboutMenuItem.addActionListener((ActionEvent event) -> {
+            Component frame = new JFrame();
+            JOptionPane.showMessageDialog(frame,
+                    "This program was created by John Mangold, Joe Mowry, and Allison Bodvig"        
+                    );
+            
+        });
         
         help.add(instructionsMenuItem);
         help.add(aboutMenuItem);
