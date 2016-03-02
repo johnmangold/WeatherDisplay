@@ -8,8 +8,9 @@ package weatherdisplay;
 import javax.swing.*;
 
 /**
- *
- * @author 1018560
+ * This creates all the necessary components for the class, including datafields
+ * and the adding of tabs for each range desired.
+ * @authors Allison Bodvig, John Mangold, Joseph Mowry
  */
 public class OptionsPanel extends JPanel {
 
@@ -224,7 +225,11 @@ public class OptionsPanel extends JPanel {
                 .addContainerGap())    
         );
     }// </editor-fold>                        
-      
+     /**
+      * Handles each display range for each tab and iterates to the next record
+      * set.
+      * @param evt 
+      */ 
     private void NextDataActionPerformed(java.awt.event.ActionEvent evt) {                                         
      
         String category = DataFields.getSelectedItem().toString();
@@ -310,7 +315,11 @@ public class OptionsPanel extends JPanel {
                 break;
         }
     } 
-      
+    /**
+     * Handles each display range for each tab and iterates to the previous
+     * record set.
+     * @param evt 
+     */
     private void PrevDataActionPerformed(java.awt.event.ActionEvent evt) {
         String category = DataFields.getSelectedItem().toString();
         String title = DataPane.getTitleAt(DataPane.getSelectedIndex());
@@ -396,13 +405,10 @@ public class OptionsPanel extends JPanel {
         }
     } 
 
-    // Variables declaration - do not modify                     
-   // private WeatherGraph DailyTab;
     public static javax.swing.JComboBox DataFields;
     public static javax.swing.JTabbedPane DataPane;
     private javax.swing.JButton NextData;
     private javax.swing.JButton PrevData;
     private javax.swing.JLabel jLabel1;
-    // End of variables declaration                   
 }
 

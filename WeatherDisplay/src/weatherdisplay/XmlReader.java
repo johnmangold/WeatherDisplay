@@ -24,8 +24,9 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 /**
- *
- * @author 1018560
+ * Handles the reading and storing of XML data into an allWeather object for
+ * future handling.
+ * @authors Allison Bodvig, John Mangold, Joseph Mowry
  */
 public class XmlReader {
     List< List<Weather> > allWeather = new ArrayList();
@@ -33,17 +34,40 @@ public class XmlReader {
     public XmlReader() {
         
     }
-    
+    /**
+     * Takes the given files and extracts the data into an allWeather object.
+     * @param fileList
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     * @throws IOException
+     * @throws ParseException 
+     */
     public XmlReader(File[] fileList) throws ParserConfigurationException, SAXException, IOException, ParseException {
         for (File file : fileList) {
             allWeather.add(this.read(file.toString()));
         }
     }
-    
+    /**
+     * Takes a given file and extracts the data into an allWeather object.
+     * @param file
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     * @throws IOException
+     * @throws ParseException 
+     */
     public XmlReader(File file) throws ParserConfigurationException, SAXException, IOException, ParseException {
         allWeather.add(this.read(file.toString()));
     }
-    
+    /**
+     * Handles the actual cycling of XML files and appending them into lists,
+     * returning the data as a list of weather objects.
+     * @param filename
+     * @return
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     * @throws IOException
+     * @throws ParseException 
+     */
     protected List<Weather> read(String filename) throws ParserConfigurationException, SAXException, IOException, ParseException {
         List<Weather> weatherList = new ArrayList();
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();

@@ -5,9 +5,11 @@
  */
 package weatherdisplay;
 
+import javafx.scene.chart.NumberAxis;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.NumberTickUnit;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
@@ -15,10 +17,13 @@ import static weatherdisplay.WeatherGraph.dataset;
 import static weatherdisplay.WeatherGraph.temperatureChart;
 
 /**
- *
- * @author 1959760
+ * This object contains the datasets related to weather, and is tasked with
+ * creating the chart object with respect to each given range and attribute.
+ * @authors Allison Bodvig, John Mangold, Joseph Mowry
+ * 
  */
 public class WeatherDataset {
+    // a DefaultCategoryDataset for each attribute and range combination
     static DefaultCategoryDataset temperatureDatasetDaily = new DefaultCategoryDataset();
     static DefaultCategoryDataset humidityDatasetDaily = new DefaultCategoryDataset();
     static DefaultCategoryDataset barometricDatasetDaily = new DefaultCategoryDataset();
@@ -47,6 +52,14 @@ public class WeatherDataset {
     public WeatherDataset() {
     }
     
+    /**
+     * Obtains a JFreeChart object from the factory, set with the appropriate
+     * optional flags.
+     * @param ds            the dataset used to plot
+     * @param tabName       the name of the current tab
+     * @param attributeName name of the current attribute
+     * @return 
+     */
     public static ChartPanel createChartFromDataset(CategoryDataset ds, String tabName, String attributeName){
         
         JFreeChart chart = ChartFactory.createLineChart(
@@ -59,10 +72,14 @@ public class WeatherDataset {
             true,                      // tooltips
             true                       // urls
         );
+
         
         return new ChartPanel(chart);
     }
-    
+    /**
+     * Clears the data set for each range of values.
+     * @param type  the desired range
+     */
     public void clearDataset(String type) {
         switch(type) {
             case "Daily":

@@ -19,8 +19,10 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
 /**
- *
- * @author 1018560
+ * The main entry point to the project, this class calls methods to obtain
+ * values for a global list of weather objects, as well as handles creating and
+ * showing the main thread.
+ * @authors Allison Bodvig, John Mangold, Joseph Mowry
  */
 public class WeatherDisplay {
 
@@ -64,7 +66,13 @@ public class WeatherDisplay {
         frame.setLocationByPlatform(true);
         frame.setVisible(true);
     }
-    
+    /**
+     * Safely reads all data from XML into a global allWeather object.
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     * @throws IOException
+     * @throws ParseException 
+     */
     private static void readDirXml() throws ParserConfigurationException, SAXException, IOException, ParseException {
         XmlReader reader = new XmlReader(listOfFiles);
         allWeather = reader.allWeather;
@@ -74,7 +82,12 @@ public class WeatherDisplay {
         year = allWeather.get(0).get(0).dateTime.get(Calendar.YEAR);
         wg = new WeatherGraph("It doesn't matter, it's not going to use it.");
     }
-    
+    /**
+     * The actual main entry point to the project, this safely reads the data
+     * and dispatches the createAndShowGui method.
+     * @param args
+     * @throws ParseException 
+     */
     public static void main(String[] args) throws ParseException {
         try {
             readDirXml();
