@@ -288,7 +288,7 @@ public class OptionsPanel extends JPanel {
     // Variables declaration - do not modify                     
    // private WeatherGraph DailyTab;
     public static javax.swing.JComboBox DataFields;
-    private javax.swing.JTabbedPane DataPane;
+    public static javax.swing.JTabbedPane DataPane;
     private javax.swing.JButton NextData;
     private javax.swing.JButton PrevData;
     private javax.swing.JLabel jLabel1;

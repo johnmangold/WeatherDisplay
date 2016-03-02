@@ -99,176 +99,693 @@ public class MenuBar extends JMenuBar {
             double totalrain = 0.0;
             String windDir = "";
             int[] dirArray = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-            
-           for (int i = 0; i < WeatherDataset.temperatureDataset.getRowCount(); i++) {
-               for (int j = 0; j < WeatherDataset.temperatureDataset.getColumnCount(); j++ ) {
-                   tempAverage = tempAverage + doubleValue(WeatherDataset.temperatureDataset.getValue(i, j));
-                   if (doubleValue(WeatherDataset.temperatureDataset.getValue(i, j)) > highTemp) {
-                       highTemp = doubleValue(WeatherDataset.temperatureDataset.getValue(i, j));
-                       highi = i;
-                       highj = j;
-                   }
-                   if (doubleValue(WeatherDataset.temperatureDataset.getValue(i, j)) < lowTemp) {
-                       lowTemp = doubleValue(WeatherDataset.temperatureDataset.getValue(i, j));
-                       lowi = i;
-                       lowj = j;
-                   }
-               }
-           }
-           
-           tempAverage = tempAverage / (WeatherDataset.temperatureDataset.getRowCount() * WeatherDataset.temperatureDataset.getColumnCount());
-            
-           for (int i = 0; i < WeatherDataset.windspeedDataset.getRowCount(); i++) {
-               for (int j = 0; j < WeatherDataset.windspeedDataset.getColumnCount(); j++ ) {
-                   windAverage = windAverage + doubleValue(WeatherDataset.windspeedDataset.getValue(i, j));
-               }
-           }
-           
-           windAverage = windAverage / (WeatherDataset.windspeedDataset.getRowCount() * WeatherDataset.windspeedDataset.getColumnCount());
-           
-           //wind gust, find max
-           for(List<Weather> month : WeatherDisplay.allWeather){
-            for(Weather record : month){
-                if(Double.parseDouble(record.windgust) > maxWindSpeed){
-                    maxWindSpeed = Double.parseDouble(record.windgust);
-                    windDate = record.date;
-                    windTime = record.time;
-                }
-                
-            }
-           }
-           
-           for (int i = 0; i < WeatherDataset.rainfallDataset.getRowCount(); i++) {
-               for (int j = 0; j < WeatherDataset.rainfallDataset.getColumnCount(); j++ ) {
-                   totalrain = totalrain + doubleValue(WeatherDataset.rainfallDataset.getValue(i, j));
-               }
-           }
-
             String temp;
             
-            for(List<Weather> month : WeatherDisplay.allWeather){
-                for(Weather record : month){ 
-                    try{
-                    
-                        temp = record.winddirection.toUpperCase();
-                    }catch(NullPointerException ex){
-                        temp = "?";
+            
+            switch(OptionsPanel.DataPane.getSelectedIndex()){
+                case 0:
+                    for (int i = 0; i < WeatherDataset.temperatureDatasetDaily.getRowCount(); i++) {
+                        for (int j = 0; j < WeatherDataset.temperatureDatasetDaily.getColumnCount(); j++ ) {
+                            tempAverage = tempAverage + doubleValue(WeatherDataset.temperatureDatasetDaily.getValue(i, j));
+                            if (doubleValue(WeatherDataset.temperatureDatasetDaily.getValue(i, j)) > highTemp) {
+                                highTemp = doubleValue(WeatherDataset.temperatureDatasetDaily.getValue(i, j));
+                                highi = i;
+                                highj = j;
+                            }
+                            if (doubleValue(WeatherDataset.temperatureDatasetDaily.getValue(i, j)) < lowTemp) {
+                                lowTemp = doubleValue(WeatherDataset.temperatureDatasetDaily.getValue(i, j));
+                                lowi = i;
+                                lowj = j;
+                            }
+                        }
                     }
-                    switch (temp) {
-                        case "N":
-                            dirArray[0] = dirArray[0] + 1;
+           
+                    tempAverage = tempAverage / (WeatherDataset.temperatureDatasetDaily.getRowCount() * WeatherDataset.temperatureDatasetDaily.getColumnCount());
+            
+                    for (int i = 0; i < WeatherDataset.windspeedDatasetDaily.getRowCount(); i++) {
+                        for (int j = 0; j < WeatherDataset.windspeedDatasetDaily.getColumnCount(); j++ ) {
+                            windAverage = windAverage + doubleValue(WeatherDataset.windspeedDatasetDaily.getValue(i, j));
+                        }
+                    }
+           
+                    windAverage = windAverage / (WeatherDataset.windspeedDatasetDaily.getRowCount() * WeatherDataset.windspeedDatasetDaily.getColumnCount());
+           
+                    //wind gust, find max
+                    for(List<Weather> month : WeatherDisplay.allWeather){
+                        for(Weather record : month){
+                            if(Double.parseDouble(record.windgust) > maxWindSpeed){
+                                maxWindSpeed = Double.parseDouble(record.windgust);
+                                windDate = record.date;
+                                windTime = record.time;
+                            }
+                
+                        }
+                    }
+           
+                    for (int i = 0; i < WeatherDataset.rainfallDatasetDaily.getRowCount(); i++) {
+                        for (int j = 0; j < WeatherDataset.rainfallDatasetDaily.getColumnCount(); j++ ) {
+                            totalrain = totalrain + doubleValue(WeatherDataset.rainfallDatasetDaily.getValue(i, j));
+                        }
+                    }
+
+                    
+            
+                    for(List<Weather> month : WeatherDisplay.allWeather){
+                        for(Weather record : month){ 
+                            try{
+                                temp = record.winddirection.toUpperCase();
+                            }catch(NullPointerException ex){
+                                temp = "?";
+                            }
+                            switch (temp) {
+                                case "N":
+                                    dirArray[0] = dirArray[0] + 1;
+                                    break;
+                                case "NE":
+                                    dirArray[1] = dirArray[1] + 1;
+                                    break;
+                                case "NNE":
+                                    dirArray[2] = dirArray[2] + 1;
+                                    break;
+                                case "ENE":
+                                    dirArray[3] = dirArray[3] + 1;
+                                    break;
+                                case "E":
+                                    dirArray[4] = dirArray[4] + 1;
+                                    break;
+                                case "ESE":
+                                    dirArray[5] = dirArray[5] + 1;
+                                    break;
+                                case "SE":
+                                    dirArray[6] = dirArray[6] + 1;
+                                    break;
+                                case "SSE":
+                                    dirArray[7] = dirArray[7] + 1;
+                                    break;
+                                case "S":
+                                    dirArray[8] = dirArray[8] + 1;
+                                    break;
+                                case "SSW":
+                                    dirArray[9] = dirArray[9] + 1;
+                                    break;    
+                                case "SW":
+                                    dirArray[10] = dirArray[10] + 1;
+                                    break;
+                                case "WSW":
+                                    dirArray[11] = dirArray[11] + 1;
+                                    break;    
+                                case "W":
+                                    dirArray[12] = dirArray[12] + 1;
+                                    break;
+                                case "WNW":
+                                    dirArray[13] = dirArray[13] + 1;
+                                    break;
+                                case "NW":
+                                    dirArray[14] = dirArray[14] + 1;
+                                    break;
+                                case "NNW":
+                                    dirArray[15] = dirArray[15] + 1;
+                                    break;
+                                default:
+                                    dirArray[16] = dirArray[16] + 1;
+                            }
+                        }
+                    }
+            
+                    for (int i = 0; i < 17; i++) {
+                        if (dirArray[i] > count)
+                        {
+                            count = dirArray[i];
+                            index = i;
+                        }
+                    }
+            
+                    switch (index) {
+                        case 1:
+                            windDir = "N";
                             break;
-                        case "NE":
-                            dirArray[1] = dirArray[1] + 1;
+                        case 2:
+                            windDir = "NE";
                             break;
-                        case "NNE":
-                            dirArray[2] = dirArray[2] + 1;
+                        case 3:
+                            windDir = "NNE";
                             break;
-                        case "ENE":
-                            dirArray[3] = dirArray[3] + 1;
+                        case 4:
+                            windDir = "ENE";
                             break;
-                        case "E":
-                            dirArray[4] = dirArray[4] + 1;
+                        case 5:
+                            windDir = "E";
                             break;
-                        case "ESE":
-                            dirArray[5] = dirArray[5] + 1;
+                        case 6:
+                            windDir = "ESE";
                             break;
-                        case "SE":
-                            dirArray[6] = dirArray[6] + 1;
+                        case 7:
+                            windDir = "SE";
                             break;
-                        case "SSE":
-                            dirArray[7] = dirArray[7] + 1;
+                        case 8:
+                            windDir = "SSE";
                             break;
-                        case "S":
-                            dirArray[8] = dirArray[8] + 1;
+                        case 9:
+                            windDir = "S";
                             break;
-                        case "SSW":
-                            dirArray[9] = dirArray[9] + 1;
+                        case 10:
+                            windDir = "SSW";
                             break;    
-                        case "SW":
-                            dirArray[10] = dirArray[10] + 1;
+                        case 11:
+                            windDir = "SW";
                             break;
-                        case "WSW":
-                            dirArray[11] = dirArray[11] + 1;
+                        case 12:
+                            windDir = "WSW";
                             break;    
-                        case "W":
-                            dirArray[12] = dirArray[12] + 1;
+                        case 13:
+                            windDir = "W";
                             break;
-                        case "WNW":
-                            dirArray[13] = dirArray[13] + 1;
+                        case 14:
+                            windDir = "WNW";
                             break;
-                        case "NW":
-                            dirArray[14] = dirArray[14] + 1;
+                        case 15:
+                            windDir = "NW";
                             break;
-                        case "NNW":
-                            dirArray[15] = dirArray[15] + 1;
+                        case 16:
+                            windDir = "NNW";
                             break;
                         default:
-                            dirArray[16] = dirArray[16] + 1;
+                            windDir = "?";
                     }
-                }
-            }
-            
-            for (int i = 0; i < 17; i++) {
-                if (dirArray[i] > count)
-                {
-                    count = dirArray[i];
-                    index = i;
-                }
-            }
-            
-            switch (index) {
+                    break;
                 case 1:
-                    windDir = "N";
+                    for (int i = 0; i < WeatherDataset.temperatureDatasetWeekly.getRowCount(); i++) {
+                        for (int j = 0; j < WeatherDataset.temperatureDatasetWeekly.getColumnCount(); j++ ) {
+                            tempAverage = tempAverage + doubleValue(WeatherDataset.temperatureDatasetWeekly.getValue(i, j));
+                            if (doubleValue(WeatherDataset.temperatureDatasetWeekly.getValue(i, j)) > highTemp) {
+                                highTemp = doubleValue(WeatherDataset.temperatureDatasetWeekly.getValue(i, j));
+                                highi = i;
+                                highj = j;
+                            }
+                            if (doubleValue(WeatherDataset.temperatureDatasetWeekly.getValue(i, j)) < lowTemp) {
+                                lowTemp = doubleValue(WeatherDataset.temperatureDatasetWeekly.getValue(i, j));
+                                lowi = i;
+                                lowj = j;
+                            }
+                        }
+                    }
+           
+                    tempAverage = tempAverage / (WeatherDataset.temperatureDatasetWeekly.getRowCount() * WeatherDataset.temperatureDatasetWeekly.getColumnCount());
+            
+                    for (int i = 0; i < WeatherDataset.windspeedDatasetWeekly.getRowCount(); i++) {
+                        for (int j = 0; j < WeatherDataset.windspeedDatasetWeekly.getColumnCount(); j++ ) {
+                            windAverage = windAverage + doubleValue(WeatherDataset.windspeedDatasetWeekly.getValue(i, j));
+                        }
+                    }
+           
+                    windAverage = windAverage / (WeatherDataset.windspeedDatasetWeekly.getRowCount() * WeatherDataset.windspeedDatasetWeekly.getColumnCount());
+           
+                    //wind gust, find max
+                    for(List<Weather> month : WeatherDisplay.allWeather){
+                        for(Weather record : month){
+                            if(Double.parseDouble(record.windgust) > maxWindSpeed){
+                                maxWindSpeed = Double.parseDouble(record.windgust);
+                                windDate = record.date;
+                                windTime = record.time;
+                            }
+                
+                        }
+                    }
+           
+                    for (int i = 0; i < WeatherDataset.rainfallDatasetWeekly.getRowCount(); i++) {
+                        for (int j = 0; j < WeatherDataset.rainfallDatasetWeekly.getColumnCount(); j++ ) {
+                            totalrain = totalrain + doubleValue(WeatherDataset.rainfallDatasetWeekly.getValue(i, j));
+                        }
+                    }
+
+                    
+            
+                    for(List<Weather> month : WeatherDisplay.allWeather){
+                        for(Weather record : month){ 
+                            try{
+                                temp = record.winddirection.toUpperCase();
+                            }catch(NullPointerException ex){
+                                temp = "?";
+                            }
+                            switch (temp) {
+                                case "N":
+                                    dirArray[0] = dirArray[0] + 1;
+                                    break;
+                                case "NE":
+                                    dirArray[1] = dirArray[1] + 1;
+                                    break;
+                                case "NNE":
+                                    dirArray[2] = dirArray[2] + 1;
+                                    break;
+                                case "ENE":
+                                    dirArray[3] = dirArray[3] + 1;
+                                    break;
+                                case "E":
+                                    dirArray[4] = dirArray[4] + 1;
+                                    break;
+                                case "ESE":
+                                    dirArray[5] = dirArray[5] + 1;
+                                    break;
+                                case "SE":
+                                    dirArray[6] = dirArray[6] + 1;
+                                    break;
+                                case "SSE":
+                                    dirArray[7] = dirArray[7] + 1;
+                                    break;
+                                case "S":
+                                    dirArray[8] = dirArray[8] + 1;
+                                    break;
+                                case "SSW":
+                                    dirArray[9] = dirArray[9] + 1;
+                                    break;    
+                                case "SW":
+                                    dirArray[10] = dirArray[10] + 1;
+                                    break;
+                                case "WSW":
+                                    dirArray[11] = dirArray[11] + 1;
+                                    break;    
+                                case "W":
+                                    dirArray[12] = dirArray[12] + 1;
+                                    break;
+                                case "WNW":
+                                    dirArray[13] = dirArray[13] + 1;
+                                    break;
+                                case "NW":
+                                    dirArray[14] = dirArray[14] + 1;
+                                    break;
+                                case "NNW":
+                                    dirArray[15] = dirArray[15] + 1;
+                                    break;
+                                default:
+                                    dirArray[16] = dirArray[16] + 1;
+                            }
+                        }
+                    }
+            
+                    for (int i = 0; i < 17; i++) {
+                        if (dirArray[i] > count)
+                        {
+                            count = dirArray[i];
+                            index = i;
+                        }
+                    }
+            
+                    switch (index) {
+                        case 1:
+                            windDir = "N";
+                            break;
+                        case 2:
+                            windDir = "NE";
+                            break;
+                        case 3:
+                            windDir = "NNE";
+                            break;
+                        case 4:
+                            windDir = "ENE";
+                            break;
+                        case 5:
+                            windDir = "E";
+                            break;
+                        case 6:
+                            windDir = "ESE";
+                            break;
+                        case 7:
+                            windDir = "SE";
+                            break;
+                        case 8:
+                            windDir = "SSE";
+                            break;
+                        case 9:
+                            windDir = "S";
+                            break;
+                        case 10:
+                            windDir = "SSW";
+                            break;    
+                        case 11:
+                            windDir = "SW";
+                            break;
+                        case 12:
+                            windDir = "WSW";
+                            break;    
+                        case 13:
+                            windDir = "W";
+                            break;
+                        case 14:
+                            windDir = "WNW";
+                            break;
+                        case 15:
+                            windDir = "NW";
+                            break;
+                        case 16:
+                            windDir = "NNW";
+                            break;
+                        default:
+                            windDir = "?";
+                    }
                     break;
                 case 2:
-                    windDir = "NE";
+                    for (int i = 0; i < WeatherDataset.temperatureDatasetMonthly.getRowCount(); i++) {
+                        for (int j = 0; j < WeatherDataset.temperatureDatasetMonthly.getColumnCount(); j++ ) {
+                            tempAverage = tempAverage + doubleValue(WeatherDataset.temperatureDatasetMonthly.getValue(i, j));
+                            if (doubleValue(WeatherDataset.temperatureDatasetMonthly.getValue(i, j)) > highTemp) {
+                                highTemp = doubleValue(WeatherDataset.temperatureDatasetMonthly.getValue(i, j));
+                                highi = i;
+                                highj = j;
+                            }
+                            if (doubleValue(WeatherDataset.temperatureDatasetMonthly.getValue(i, j)) < lowTemp) {
+                                lowTemp = doubleValue(WeatherDataset.temperatureDatasetMonthly.getValue(i, j));
+                                lowi = i;
+                                lowj = j;
+                            }
+                        }
+                    }
+           
+                    tempAverage = tempAverage / (WeatherDataset.temperatureDatasetMonthly.getRowCount() * WeatherDataset.temperatureDatasetMonthly.getColumnCount());
+            
+                    for (int i = 0; i < WeatherDataset.windspeedDatasetMonthly.getRowCount(); i++) {
+                        for (int j = 0; j < WeatherDataset.windspeedDatasetMonthly.getColumnCount(); j++ ) {
+                            windAverage = windAverage + doubleValue(WeatherDataset.windspeedDatasetMonthly.getValue(i, j));
+                        }
+                    }
+           
+                    windAverage = windAverage / (WeatherDataset.windspeedDatasetMonthly.getRowCount() * WeatherDataset.windspeedDatasetMonthly.getColumnCount());
+           
+                    //wind gust, find max
+                    for(List<Weather> month : WeatherDisplay.allWeather){
+                        for(Weather record : month){
+                            if(Double.parseDouble(record.windgust) > maxWindSpeed){
+                                maxWindSpeed = Double.parseDouble(record.windgust);
+                                windDate = record.date;
+                                windTime = record.time;
+                            }
+                
+                        }
+                    }
+           
+                    for (int i = 0; i < WeatherDataset.rainfallDatasetMonthly.getRowCount(); i++) {
+                        for (int j = 0; j < WeatherDataset.rainfallDatasetMonthly.getColumnCount(); j++ ) {
+                            totalrain = totalrain + doubleValue(WeatherDataset.rainfallDatasetMonthly.getValue(i, j));
+                        }
+                    }
+
+                    
+            
+                    for(List<Weather> month : WeatherDisplay.allWeather){
+                        for(Weather record : month){ 
+                            try{
+                                temp = record.winddirection.toUpperCase();
+                            }catch(NullPointerException ex){
+                                temp = "?";
+                            }
+                            switch (temp) {
+                                case "N":
+                                    dirArray[0] = dirArray[0] + 1;
+                                    break;
+                                case "NE":
+                                    dirArray[1] = dirArray[1] + 1;
+                                    break;
+                                case "NNE":
+                                    dirArray[2] = dirArray[2] + 1;
+                                    break;
+                                case "ENE":
+                                    dirArray[3] = dirArray[3] + 1;
+                                    break;
+                                case "E":
+                                    dirArray[4] = dirArray[4] + 1;
+                                    break;
+                                case "ESE":
+                                    dirArray[5] = dirArray[5] + 1;
+                                    break;
+                                case "SE":
+                                    dirArray[6] = dirArray[6] + 1;
+                                    break;
+                                case "SSE":
+                                    dirArray[7] = dirArray[7] + 1;
+                                    break;
+                                case "S":
+                                    dirArray[8] = dirArray[8] + 1;
+                                    break;
+                                case "SSW":
+                                    dirArray[9] = dirArray[9] + 1;
+                                    break;    
+                                case "SW":
+                                    dirArray[10] = dirArray[10] + 1;
+                                    break;
+                                case "WSW":
+                                    dirArray[11] = dirArray[11] + 1;
+                                    break;    
+                                case "W":
+                                    dirArray[12] = dirArray[12] + 1;
+                                    break;
+                                case "WNW":
+                                    dirArray[13] = dirArray[13] + 1;
+                                    break;
+                                case "NW":
+                                    dirArray[14] = dirArray[14] + 1;
+                                    break;
+                                case "NNW":
+                                    dirArray[15] = dirArray[15] + 1;
+                                    break;
+                                default:
+                                    dirArray[16] = dirArray[16] + 1;
+                            }
+                        }
+                    }
+            
+                    for (int i = 0; i < 17; i++) {
+                        if (dirArray[i] > count)
+                        {
+                            count = dirArray[i];
+                            index = i;
+                        }
+                    }
+            
+                    switch (index) {
+                        case 1:
+                            windDir = "N";
+                            break;
+                        case 2:
+                            windDir = "NE";
+                            break;
+                        case 3:
+                            windDir = "NNE";
+                            break;
+                        case 4:
+                            windDir = "ENE";
+                            break;
+                        case 5:
+                            windDir = "E";
+                            break;
+                        case 6:
+                            windDir = "ESE";
+                            break;
+                        case 7:
+                            windDir = "SE";
+                            break;
+                        case 8:
+                            windDir = "SSE";
+                            break;
+                        case 9:
+                            windDir = "S";
+                            break;
+                        case 10:
+                            windDir = "SSW";
+                            break;    
+                        case 11:
+                            windDir = "SW";
+                            break;
+                        case 12:
+                            windDir = "WSW";
+                            break;    
+                        case 13:
+                            windDir = "W";
+                            break;
+                        case 14:
+                            windDir = "WNW";
+                            break;
+                        case 15:
+                            windDir = "NW";
+                            break;
+                        case 16:
+                            windDir = "NNW";
+                            break;
+                        default:
+                            windDir = "?";
+                    }
                     break;
                 case 3:
-                    windDir = "NNE";
+                    for (int i = 0; i < WeatherDataset.temperatureDatasetYearly.getRowCount(); i++) {
+                        for (int j = 0; j < WeatherDataset.temperatureDatasetYearly.getColumnCount(); j++ ) {
+                            tempAverage = tempAverage + doubleValue(WeatherDataset.temperatureDatasetYearly.getValue(i, j));
+                            if (doubleValue(WeatherDataset.temperatureDatasetYearly.getValue(i, j)) > highTemp) {
+                                highTemp = doubleValue(WeatherDataset.temperatureDatasetYearly.getValue(i, j));
+                                highi = i;
+                                highj = j;
+                            }
+                            if (doubleValue(WeatherDataset.temperatureDatasetYearly.getValue(i, j)) < lowTemp) {
+                                lowTemp = doubleValue(WeatherDataset.temperatureDatasetYearly.getValue(i, j));
+                                lowi = i;
+                                lowj = j;
+                            }
+                        }
+                    }
+           
+                    tempAverage = tempAverage / (WeatherDataset.temperatureDatasetYearly.getRowCount() * WeatherDataset.temperatureDatasetYearly.getColumnCount());
+            
+                    for (int i = 0; i < WeatherDataset.windspeedDatasetYearly.getRowCount(); i++) {
+                        for (int j = 0; j < WeatherDataset.windspeedDatasetYearly.getColumnCount(); j++ ) {
+                            windAverage = windAverage + doubleValue(WeatherDataset.windspeedDatasetYearly.getValue(i, j));
+                        }
+                    }
+           
+                    windAverage = windAverage / (WeatherDataset.windspeedDatasetYearly.getRowCount() * WeatherDataset.windspeedDatasetYearly.getColumnCount());
+           
+                    //wind gust, find max
+                    for(List<Weather> month : WeatherDisplay.allWeather){
+                        for(Weather record : month){
+                            if(Double.parseDouble(record.windgust) > maxWindSpeed){
+                                maxWindSpeed = Double.parseDouble(record.windgust);
+                                windDate = record.date;
+                                windTime = record.time;
+                            }
+                
+                        }
+                    }
+           
+                    for (int i = 0; i < WeatherDataset.rainfallDatasetYearly.getRowCount(); i++) {
+                        for (int j = 0; j < WeatherDataset.rainfallDatasetYearly.getColumnCount(); j++ ) {
+                            totalrain = totalrain + doubleValue(WeatherDataset.rainfallDatasetYearly.getValue(i, j));
+                        }
+                    }
+
+                    
+            
+                    for(List<Weather> month : WeatherDisplay.allWeather){
+                        for(Weather record : month){ 
+                            try{
+                                temp = record.winddirection.toUpperCase();
+                            }catch(NullPointerException ex){
+                                temp = "?";
+                            }
+                            switch (temp) {
+                                case "N":
+                                    dirArray[0] = dirArray[0] + 1;
+                                    break;
+                                case "NE":
+                                    dirArray[1] = dirArray[1] + 1;
+                                    break;
+                                case "NNE":
+                                    dirArray[2] = dirArray[2] + 1;
+                                    break;
+                                case "ENE":
+                                    dirArray[3] = dirArray[3] + 1;
+                                    break;
+                                case "E":
+                                    dirArray[4] = dirArray[4] + 1;
+                                    break;
+                                case "ESE":
+                                    dirArray[5] = dirArray[5] + 1;
+                                    break;
+                                case "SE":
+                                    dirArray[6] = dirArray[6] + 1;
+                                    break;
+                                case "SSE":
+                                    dirArray[7] = dirArray[7] + 1;
+                                    break;
+                                case "S":
+                                    dirArray[8] = dirArray[8] + 1;
+                                    break;
+                                case "SSW":
+                                    dirArray[9] = dirArray[9] + 1;
+                                    break;    
+                                case "SW":
+                                    dirArray[10] = dirArray[10] + 1;
+                                    break;
+                                case "WSW":
+                                    dirArray[11] = dirArray[11] + 1;
+                                    break;    
+                                case "W":
+                                    dirArray[12] = dirArray[12] + 1;
+                                    break;
+                                case "WNW":
+                                    dirArray[13] = dirArray[13] + 1;
+                                    break;
+                                case "NW":
+                                    dirArray[14] = dirArray[14] + 1;
+                                    break;
+                                case "NNW":
+                                    dirArray[15] = dirArray[15] + 1;
+                                    break;
+                                default:
+                                    dirArray[16] = dirArray[16] + 1;
+                            }
+                        }
+                    }
+            
+                    for (int i = 0; i < 17; i++) {
+                        if (dirArray[i] > count)
+                        {
+                            count = dirArray[i];
+                            index = i;
+                        }
+                    }
+            
+                    switch (index) {
+                        case 1:
+                            windDir = "N";
+                            break;
+                        case 2:
+                            windDir = "NE";
+                            break;
+                        case 3:
+                            windDir = "NNE";
+                            break;
+                        case 4:
+                            windDir = "ENE";
+                            break;
+                        case 5:
+                            windDir = "E";
+                            break;
+                        case 6:
+                            windDir = "ESE";
+                            break;
+                        case 7:
+                            windDir = "SE";
+                            break;
+                        case 8:
+                            windDir = "SSE";
+                            break;
+                        case 9:
+                            windDir = "S";
+                            break;
+                        case 10:
+                            windDir = "SSW";
+                            break;    
+                        case 11:
+                            windDir = "SW";
+                            break;
+                        case 12:
+                            windDir = "WSW";
+                            break;    
+                        case 13:
+                            windDir = "W";
+                            break;
+                        case 14:
+                            windDir = "WNW";
+                            break;
+                        case 15:
+                            windDir = "NW";
+                            break;
+                        case 16:
+                            windDir = "NNW";
+                            break;
+                        default:
+                            windDir = "?";
+                    }
                     break;
-                case 4:
-                    windDir = "ENE";
-                    break;
-                case 5:
-                    windDir = "E";
-                    break;
-                case 6:
-                    windDir = "ESE";
-                    break;
-                case 7:
-                    windDir = "SE";
-                    break;
-                case 8:
-                    windDir = "SSE";
-                    break;
-                case 9:
-                    windDir = "S";
-                    break;
-                case 10:
-                    windDir = "SSW";
-                    break;    
-                case 11:
-                    windDir = "SW";
-                    break;
-                case 12:
-                    windDir = "WSW";
-                    break;    
-                case 13:
-                    windDir = "W";
-                    break;
-                case 14:
-                    windDir = "WNW";
-                    break;
-                case 15:
-                    windDir = "NW";
-                    break;
-                case 16:
-                    windDir = "NNW";
-                    break;
-                default:
-                    windDir = "?";
             }
+            
+            
             
             JOptionPane.showMessageDialog(frame, 
                     "Average Temperature: " + df.format(tempAverage) + 
