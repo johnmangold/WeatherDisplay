@@ -8,10 +8,12 @@ package weatherdisplay;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Calendar;
 import java.util.List;
-import java.util.Map;
+import java.util.Locale;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -32,17 +34,17 @@ public class XmlReader {
         
     }
     
-    public XmlReader(File[] fileList) throws ParserConfigurationException, SAXException, IOException {
+    public XmlReader(File[] fileList) throws ParserConfigurationException, SAXException, IOException, ParseException {
         for (File file : fileList) {
             allWeather.add(this.read(file.toString()));
         }
     }
     
-    public XmlReader(File file) throws ParserConfigurationException, SAXException, IOException {
+    public XmlReader(File file) throws ParserConfigurationException, SAXException, IOException, ParseException {
         allWeather.add(this.read(file.toString()));
     }
     
-    protected List<Weather> read(String filename) throws ParserConfigurationException, SAXException, IOException {
+    protected List<Weather> read(String filename) throws ParserConfigurationException, SAXException, IOException, ParseException {
         List<Weather> weatherList = new ArrayList();
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
@@ -50,6 +52,7 @@ public class XmlReader {
         
         NodeList nodeList = document.getDocumentElement().getChildNodes();
         
+        Boolean first = true;
         for(int i = 0; i < nodeList.getLength(); i++) {
             Node node = nodeList.item(i);
             if( node instanceof Element ) {
@@ -100,6 +103,15 @@ public class XmlReader {
                                 break;
                         }
                     }
+                }
+                weather.dateTime = Calendar.getInstance();
+                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy", Locale.US);
+                weather.dateTime.setTime(sdf.parse(weather.date));
+                if(i == 0 && first == true) {
+                    WeatherDisplay.day = weather.dateTime.get(Calendar.DAY_OF_MONTH);
+                    WeatherDisplay.month = weather.dateTime.get(Calendar.MONTH);
+                    WeatherDisplay.year = weather.dateTime.get(Calendar.YEAR);
+                    first = false;
                 }
                 weatherList.add(weather);
             }

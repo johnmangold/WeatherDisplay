@@ -5,6 +5,8 @@
  */
 package weatherdisplay;
 
+import java.util.Calendar;
+
 /**
  *
  * @author 1018560
@@ -12,6 +14,7 @@ package weatherdisplay;
 public class Weather {
     public String date;
     public String time;
+    public Calendar dateTime;
     public String temperature;
     public String humidity;
     public String barometer;

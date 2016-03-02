@@ -10,6 +10,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,6 +29,13 @@ public class WeatherDisplay {
     private static final File main = new File("xml/");
     private static final File[] listOfFiles = main.listFiles();
     public static String dataOption = "Temperature";
+    public static Boolean freshData = true;
+    public static WeatherDataset wds = new WeatherDataset();
+    public static WeatherGraph wg;
+    public static int day;
+    public static int month;
+    public static int year;
+
     //public static int[] startIndex = new int[2]; //holds the two indexes for the start data point
     //public static int[] endIndex = new int[2]; //holds the two indexes for the end data point
     
@@ -57,14 +65,14 @@ public class WeatherDisplay {
         frame.setVisible(true);
     }
     
-    private static void readDirXml() throws ParserConfigurationException, SAXException, IOException {
+    private static void readDirXml() throws ParserConfigurationException, SAXException, IOException, ParseException {
         XmlReader reader = new XmlReader(listOfFiles);
         allWeather = reader.allWeather;
+        wg = new WeatherGraph("It doesn't matter, it's not going to use it.");
     }
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         try {
-            // TODO code application logic here
             readDirXml();
         } catch (ParserConfigurationException | SAXException | IOException ex) {
             Logger.getLogger(WeatherDisplay.class.getName()).log(Level.SEVERE, null, ex);
