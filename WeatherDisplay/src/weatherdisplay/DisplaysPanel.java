@@ -8,8 +8,8 @@ package weatherdisplay;
 import javax.swing.*;
 
 /**
- *
- * @author 1018560
+ * Calls the DisplayItems object.
+ * @authors Allison Bodvig, John Mangold, Joseph Mowry
  */
 public class DisplaysPanel extends JPanel {
     public static java.util.List< java.util.List<Weather> > data;

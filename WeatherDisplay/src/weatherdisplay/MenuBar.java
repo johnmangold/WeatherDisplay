@@ -23,8 +23,8 @@ import static oracle.jrockit.jfr.events.Bits.doubleValue;
 import org.xml.sax.SAXException;
 
 /**
- *
- * @author 1018560
+ * This creates the menubar and its associated components.
+ * @authors Allison Bodvig, John Mangold, Joseph Mowry
  */
 public class MenuBar extends JMenuBar {
     private File extraFile;
@@ -32,7 +32,10 @@ public class MenuBar extends JMenuBar {
     public MenuBar() {
         createMenuBar();
     }
-    
+    /**
+     * Sets up the menubar components. This also handles various listeners and
+     * calculates the data accordingly.
+     */
     private void createMenuBar() {
         JMenu file = new JMenu("File");
         file.setMnemonic(KeyEvent.VK_F);
