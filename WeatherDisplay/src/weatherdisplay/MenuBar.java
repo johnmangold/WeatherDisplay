@@ -92,10 +92,13 @@ public class MenuBar extends JMenuBar {
             int highj = 0;
             int count = 0;
             int index = 0;
+            int highwind = 0;
+            String winddate = null;
+            String highdate = null;
+            String lowdate = null;
+            
             double windAverage = 0.0;
             double maxWindSpeed = -1.0;
-            String windDate = null;
-            String windTime = null;
             double totalrain = 0.0;
             String windDir = "";
             int[] dirArray = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -119,7 +122,10 @@ public class MenuBar extends JMenuBar {
                             }
                         }
                     }
-           
+                    
+                    lowdate = WeatherDataset.temperatureDatasetDaily.getColumnKey(lowj).toString();
+                    highdate = WeatherDataset.temperatureDatasetDaily.getColumnKey(highj).toString();
+                               
                     tempAverage = tempAverage / (WeatherDataset.temperatureDatasetDaily.getRowCount() * WeatherDataset.temperatureDatasetDaily.getColumnCount());
             
                     for (int i = 0; i < WeatherDataset.windspeedDatasetDaily.getRowCount(); i++) {
@@ -135,11 +141,14 @@ public class MenuBar extends JMenuBar {
                         for (int j = 0; j < WeatherDataset.windgustDatasetDaily.getColumnCount(); j++ ) {
                             if(doubleValue(WeatherDataset.windgustDatasetDaily.getValue(i,j)) > maxWindSpeed){
                                 maxWindSpeed = doubleValue(WeatherDataset.windgustDatasetDaily.getValue(i,j));
+                                highwind = j;
                             }
                         }
                     }
                     
-                    //need to get Date and time
+                    winddate = WeatherDataset.windgustDatasetDaily.getColumnKey(highwind).toString();
+                 
+                    
            
                     for (int i = 0; i < WeatherDataset.rainfallDatasetDaily.getRowCount(); i++) {
                         for (int j = 0; j < WeatherDataset.rainfallDatasetDaily.getColumnCount(); j++ ) {
@@ -147,6 +156,7 @@ public class MenuBar extends JMenuBar {
                         }
                     }
                     break;
+                    
                 case 1:
                     for (int i = 0; i < WeatherDataset.temperatureDatasetWeekly.getRowCount(); i++) {
                         for (int j = 0; j < WeatherDataset.temperatureDatasetWeekly.getColumnCount(); j++ ) {
@@ -165,6 +175,9 @@ public class MenuBar extends JMenuBar {
                     }
            
                     tempAverage = tempAverage / (WeatherDataset.temperatureDatasetWeekly.getRowCount() * WeatherDataset.temperatureDatasetWeekly.getColumnCount());
+                    
+                    lowdate = WeatherDataset.temperatureDatasetWeekly.getColumnKey(lowj).toString();
+                    highdate = WeatherDataset.temperatureDatasetWeekly.getColumnKey(highj).toString();
             
                     for (int i = 0; i < WeatherDataset.windspeedDatasetWeekly.getRowCount(); i++) {
                         for (int j = 0; j < WeatherDataset.windspeedDatasetWeekly.getColumnCount(); j++ ) {
@@ -179,11 +192,12 @@ public class MenuBar extends JMenuBar {
                         for (int j = 0; j < WeatherDataset.windgustDatasetWeekly.getColumnCount(); j++ ) {
                             if(doubleValue(WeatherDataset.windgustDatasetWeekly.getValue(i,j)) > maxWindSpeed){
                                 maxWindSpeed = doubleValue(WeatherDataset.windgustDatasetWeekly.getValue(i,j));
+                                highwind = j;
                             }
                         }
                     }
                     
-                    //need to get Date and time
+                    winddate = WeatherDataset.windgustDatasetWeekly.getColumnKey(highwind).toString();
            
                     for (int i = 0; i < WeatherDataset.rainfallDatasetWeekly.getRowCount(); i++) {
                         for (int j = 0; j < WeatherDataset.rainfallDatasetWeekly.getColumnCount(); j++ ) {
@@ -192,6 +206,7 @@ public class MenuBar extends JMenuBar {
                     }                
                              
                     break;
+                    
                 case 2:
                     for (int i = 0; i < WeatherDataset.temperatureDatasetMonthly.getRowCount(); i++) {
                         for (int j = 0; j < WeatherDataset.temperatureDatasetMonthly.getColumnCount(); j++ ) {
@@ -210,7 +225,10 @@ public class MenuBar extends JMenuBar {
                     }
            
                     tempAverage = tempAverage / (WeatherDataset.temperatureDatasetMonthly.getRowCount() * WeatherDataset.temperatureDatasetMonthly.getColumnCount());
-            
+                    
+                    lowdate = WeatherDataset.temperatureDatasetMonthly.getColumnKey(lowj).toString();
+                    highdate = WeatherDataset.temperatureDatasetMonthly.getColumnKey(highj).toString();
+                    
                     for (int i = 0; i < WeatherDataset.windspeedDatasetMonthly.getRowCount(); i++) {
                         for (int j = 0; j < WeatherDataset.windspeedDatasetMonthly.getColumnCount(); j++ ) {
                             windAverage = windAverage + doubleValue(WeatherDataset.windspeedDatasetMonthly.getValue(i, j));
@@ -224,11 +242,12 @@ public class MenuBar extends JMenuBar {
                         for (int j = 0; j < WeatherDataset.windgustDatasetMonthly.getColumnCount(); j++ ) {
                             if(doubleValue(WeatherDataset.windgustDatasetMonthly.getValue(i,j)) > maxWindSpeed){
                                 maxWindSpeed = doubleValue(WeatherDataset.windgustDatasetMonthly.getValue(i,j));
+                                highwind = j;
                             }
                         }
                     }
                     
-                    //need to get Date and time
+                    winddate = WeatherDataset.windgustDatasetMonthly.getColumnKey(highwind).toString();
            
                     for (int i = 0; i < WeatherDataset.rainfallDatasetMonthly.getRowCount(); i++) {
                         for (int j = 0; j < WeatherDataset.rainfallDatasetMonthly.getColumnCount(); j++ ) {
@@ -237,6 +256,7 @@ public class MenuBar extends JMenuBar {
                     }
 
                     break;
+                    
                 case 3:
                     for (int i = 0; i < WeatherDataset.temperatureDatasetYearly.getRowCount(); i++) {
                         for (int j = 0; j < WeatherDataset.temperatureDatasetYearly.getColumnCount(); j++ ) {
@@ -255,6 +275,9 @@ public class MenuBar extends JMenuBar {
                     }
            
                     tempAverage = tempAverage / (WeatherDataset.temperatureDatasetYearly.getRowCount() * WeatherDataset.temperatureDatasetYearly.getColumnCount());
+                    
+                    lowdate = WeatherDataset.temperatureDatasetYearly.getColumnKey(lowj).toString();
+                    highdate = WeatherDataset.temperatureDatasetYearly.getColumnKey(highj).toString();
             
                     for (int i = 0; i < WeatherDataset.windspeedDatasetYearly.getRowCount(); i++) {
                         for (int j = 0; j < WeatherDataset.windspeedDatasetYearly.getColumnCount(); j++ ) {
@@ -268,11 +291,12 @@ public class MenuBar extends JMenuBar {
                         for (int j = 0; j < WeatherDataset.windgustDatasetYearly.getColumnCount(); j++ ) {
                             if(doubleValue(WeatherDataset.windgustDatasetYearly.getValue(i,j)) > maxWindSpeed){
                                 maxWindSpeed = doubleValue(WeatherDataset.windgustDatasetYearly.getValue(i,j));
+                                highwind = j;
                             }
                         }
                     }
                     
-                    //need to get Date and time
+                    winddate = WeatherDataset.windgustDatasetYearly.getColumnKey(highwind).toString();
            
                     for (int i = 0; i < WeatherDataset.rainfallDatasetYearly.getRowCount(); i++) {
                         for (int j = 0; j < WeatherDataset.rainfallDatasetYearly.getColumnCount(); j++ ) {
@@ -408,15 +432,12 @@ public class MenuBar extends JMenuBar {
             JOptionPane.showMessageDialog(frame, 
                     "Average Temperature: " + df.format(tempAverage) + 
                     "\n\nHigh Temperature: " + df.format(highTemp) + 
-                    "\nOccured on " + WeatherDisplay.allWeather.get(highi).get(highj).date +
-                    " at " + WeatherDisplay.allWeather.get(highi).get(highj).time +      
+                    "\nOccured on " + highdate +    
                     "\n\nLow Temperature: " + df.format(lowTemp) +
-                    "\nOccured on " + WeatherDisplay.allWeather.get(lowi).get(lowj).date +
-                    " at " + WeatherDisplay.allWeather.get(lowi).get(lowj).time +          
-                    //"\n\nAverage Wind Speed: " + df.format(windAverage) +
-                    //"\n\nMaximum Wind Gust: " + df.format(maxWindSpeed) +
-                    "\nOccured on " + windDate +
-                    " at " + windTime + 
+                    "\nOccured on " + lowdate +         
+                    "\n\nAverage Wind Speed: " + df.format(windAverage) +
+                    "\n\nMaximum Wind Gust: " + df.format(maxWindSpeed) +
+                    "\nOccured on " + winddate +
                     "\n\nTotal Rainfall: " + df.format(totalrain) +
                     "\n\nPrevailing Wind Direction: " + windDir +
                     "\n\n",
