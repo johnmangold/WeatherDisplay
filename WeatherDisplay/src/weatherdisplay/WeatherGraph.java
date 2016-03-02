@@ -5,19 +5,11 @@
  */
 package weatherdisplay;
 
-import java.awt.Color;
-import java.awt.Dimension;
+import java.util.Calendar;
 import java.util.List;
 import javax.swing.JPanel;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
-import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.data.xy.XYSeries;
-import org.jfree.data.xy.XYSeriesCollection;
 
 /**
  *
@@ -70,7 +62,7 @@ public class WeatherGraph extends JPanel {
            
     }
     
-    private void createSmallerDataset(String size, String start) {
+    private void createSmallerDataset(String size, int day, int month, int year) {
         final String series1 = "Temperature";
         final String series2 = "Humidity";
         final String series3 = "Barometer";
@@ -78,8 +70,8 @@ public class WeatherGraph extends JPanel {
         final String series5 = "UV Index";
         final String series6 = "Rainfall";
         
-        for(List<Weather> month : WeatherDisplay.allWeather){
-            for(Weather record : month){
+        for(List<Weather> innerMonth : WeatherDisplay.allWeather){
+            for(Weather record : innerMonth){
                 try{
                     WeatherDisplay.wds.temperatureDataset.addValue(Double.parseDouble(record.temperature), series1, record.date);
                     WeatherDisplay.wds.humidityDataset.addValue(Double.parseDouble(record.humidity), series2, record.date);
@@ -94,20 +86,20 @@ public class WeatherGraph extends JPanel {
         }
         
         if("Daily".equalsIgnoreCase(size)) {
-            for(int i=start; i == WeatherDisplay.allWeather.){
-            for(Weather record : month){
-                try{
-                    WeatherDisplay.wds.temperatureDataset.addValue(Double.parseDouble(record.temperature), series1, record.date);
-                    WeatherDisplay.wds.humidityDataset.addValue(Double.parseDouble(record.humidity), series2, record.date);
-                    WeatherDisplay.wds.barometricDataset.addValue(Double.parseDouble(record.barometer), series3, record.date);
-                    WeatherDisplay.wds.windspeedDataset.addValue(Double.parseDouble(record.windspeed), series4, record.date);
-                    WeatherDisplay.wds.uvIndexDataset.addValue(Double.parseDouble(record.uvindex), series5, record.date);
-                    WeatherDisplay.wds.rainfallDataset.addValue(Double.parseDouble(record.rainfall), series6, record.date);
-                }catch (NullPointerException ex){
-                    WeatherDisplay.wds.rainfallDataset.addValue(1, series6, record.date);
+            for(Weather record : WeatherDisplay.allWeather.get(month)){
+                if( record.dateTime.get(Calendar.DAY_OF_MONTH) == day) {
+                    try{
+                        WeatherDisplay.wds.temperatureDataset.addValue(Double.parseDouble(record.temperature), series1, record.date);
+                        WeatherDisplay.wds.humidityDataset.addValue(Double.parseDouble(record.humidity), series2, record.date);
+                        WeatherDisplay.wds.barometricDataset.addValue(Double.parseDouble(record.barometer), series3, record.date);
+                        WeatherDisplay.wds.windspeedDataset.addValue(Double.parseDouble(record.windspeed), series4, record.date);
+                        WeatherDisplay.wds.uvIndexDataset.addValue(Double.parseDouble(record.uvindex), series5, record.date);
+                        WeatherDisplay.wds.rainfallDataset.addValue(Double.parseDouble(record.rainfall), series6, record.date);
+                    }catch (NullPointerException ex){
+                        WeatherDisplay.wds.rainfallDataset.addValue(1, series6, record.date);
+                    }
                 }
             }
-        }
         }
         else if ("Weekly".equalsIgnoreCase(size)) {
             

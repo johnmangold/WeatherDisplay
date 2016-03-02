@@ -11,6 +11,7 @@ import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -60,7 +61,7 @@ public class MenuBar extends JMenuBar {
                             WeatherDisplay.allWeather.add(reader.read(each.toString()));
                         }
                     }
-                } catch (ParserConfigurationException | SAXException | IOException ex) {
+                } catch (ParserConfigurationException | SAXException | IOException | ParseException ex) {
                     Logger.getLogger(MenuBar.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
