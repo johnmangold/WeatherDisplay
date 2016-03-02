@@ -16,8 +16,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
- *
- * @author 1018560
+ * Manages weather value statistics with their corresponding images.
+ * @authors Allison Bodvig, John Mangold, Joseph Mowry
  */
 public class DisplayItems extends JPanel {
     
@@ -61,7 +61,13 @@ public class DisplayItems extends JPanel {
         a.insets = new Insets(0, 0, 0, 0);
         this.add(createPressure(WeatherDisplay.allWeather.get(random.nextInt(72)).get(random.nextInt(200)).barometer, WeatherDisplay.allWeather.get(random.nextInt(72)).get(random.nextInt(200)).uvindex), a);
     }
-    
+    /**
+     * Creates and manages temperature and heat index values to attach to the
+     * corresponding images.
+     * @param temperature
+     * @param heatIndex
+     * @return 
+     */
     private JPanel createTemperature( String temperature, String heatIndex) {
         JPanel tempPanel = new JPanel();
         tempPanel.setLayout(new GridBagLayout());
@@ -109,7 +115,13 @@ public class DisplayItems extends JPanel {
         
         return tempPanel;
     }
-    
+    /**
+     * Creates and manages wind direction and wind chill values to attach to the
+     * corresponding images.
+     * @param windDirection
+     * @param windChill
+     * @return 
+     */
     private JPanel createWindDirection( String windDirection, String windChill) {
         JPanel dirPanel = new JPanel();
         dirPanel.setLayout(new GridBagLayout());
@@ -199,7 +211,13 @@ public class DisplayItems extends JPanel {
         
         return dirPanel;
     }
-    
+    /**
+     * Creates and manages wind speed and gust values to attach to the
+     * corresponding images.
+     * @param speed
+     * @param gust
+     * @return 
+     */
     private JPanel createSpeed( String speed, String gust) {
         JPanel speedPanel = new JPanel();
         speedPanel.setLayout(new GridBagLayout());
@@ -253,7 +271,13 @@ public class DisplayItems extends JPanel {
         
         return speedPanel;
     }
-    
+    /**
+     * Creates and manages rainfall and humidity values to attach to the
+     * corresponding images.
+     * @param rainfall
+     * @param humidity
+     * @return 
+     */
     private JPanel createRainfall( String rainfall, String humidity) {
         JPanel rainPanel = new JPanel();
         rainPanel.setLayout(new GridBagLayout());
@@ -305,7 +329,13 @@ public class DisplayItems extends JPanel {
         
         return rainPanel;
     }
-    
+    /**
+     * Creates and manages pressure and UV index values to attach to the
+     * corresponding images.
+     * @param pressure
+     * @param uvIndex
+     * @return 
+     */
     private JPanel createPressure( String pressure, String uvIndex) {
         JPanel pressurePanel = new JPanel();
         pressurePanel.setLayout(new GridBagLayout());

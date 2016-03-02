@@ -14,7 +14,9 @@ import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
  *
- * @author Joseph Mowry
+ * Creates the associated datasets for the subsets of weather data that need to
+ * be parsed.
+ * @authors Allison Bodvig, John Mangold, Joseph Mowry
  */
 public class WeatherGraph extends JPanel {
     public static JFreeChart chart;
@@ -29,13 +31,23 @@ public class WeatherGraph extends JPanel {
     public WeatherGraph(){
         
     }
+    /**
+     * A constructor that takes only the name of the tab it came from to
+     * indicate range.
+     * @param tabName 
+     */
     public WeatherGraph(String tabName){
-        //createWeatherGraphUsingString(tabName);
         createSmallerDataset("Daily", WeatherDisplay.day, WeatherDisplay.month, WeatherDisplay.year);
     }
-    
+    /**
+     * The overloaded constructor for WeatherGraph that accepts various relevant
+     * data depending on the context of the tab.
+     * @param tabName
+     * @param day
+     * @param month
+     * @param year 
+     */
     public WeatherGraph(String tabName, int day, int month, int year){
-        //createWeatherGraphUsingString(tabName);
         createSmallerDataset(tabName, day, month, year);
     }
 
@@ -50,24 +62,15 @@ public class WeatherGraph extends JPanel {
         final String series4 = "Wind Speed";
         final String series5 = "UV Index";
         final String series6 = "Rainfall";
-        
-        /*for(List<Weather> month : WeatherDisplay.allWeather){
-            for(Weather record : month){
-                try{
-                    WeatherDisplay.wds.temperatureDataset.addValue(Double.parseDouble(record.temperature), series1, record.date);
-                    WeatherDisplay.wds.humidityDataset.addValue(Double.parseDouble(record.humidity), series2, record.date);
-                    WeatherDisplay.wds.barometricDataset.addValue(Double.parseDouble(record.barometer), series3, record.date);
-                    WeatherDisplay.wds.windspeedDataset.addValue(Double.parseDouble(record.windspeed), series4, record.date);
-                    WeatherDisplay.wds.uvIndexDataset.addValue(Double.parseDouble(record.uvindex), series5, record.date);
-                    WeatherDisplay.wds.rainfallDataset.addValue(Double.parseDouble(record.rainfall), series6, record.date);
-                }catch (NullPointerException ex){
-                    WeatherDisplay.wds.rainfallDataset.addValue(1, series6, record.date);
-                }
-            }
-        }*/
            
     }
-    
+    /**
+     * Creates a dataset according to the supplied range.
+     * @param size
+     * @param day
+     * @param month
+     * @param year 
+     */
     public void createSmallerDataset(String size, int day, int month, int year) {
         final String series1 = "Temperature";
         final String series2 = "Humidity";
@@ -76,21 +79,6 @@ public class WeatherGraph extends JPanel {
         final String series5 = "UV Index";
         final String series6 = "Rainfall";
         final String series7 = "Wind Gust";
-        
-        /*for(List<Weather> innerMonth : WeatherDisplay.allWeather){
-            for(Weather record : innerMonth){
-                try{
-                    WeatherDisplay.wds.temperatureDataset.addValue(Double.parseDouble(record.temperature), series1, record.date);
-                    WeatherDisplay.wds.humidityDataset.addValue(Double.parseDouble(record.humidity), series2, record.date);
-                    WeatherDisplay.wds.barometricDataset.addValue(Double.parseDouble(record.barometer), series3, record.date);
-                    WeatherDisplay.wds.windspeedDataset.addValue(Double.parseDouble(record.windspeed), series4, record.date);
-                    WeatherDisplay.wds.uvIndexDataset.addValue(Double.parseDouble(record.uvindex), series5, record.date);
-                    WeatherDisplay.wds.rainfallDataset.addValue(Double.parseDouble(record.rainfall), series6, record.date);
-                }catch (NullPointerException ex){
-                    WeatherDisplay.wds.rainfallDataset.addValue(1, series6, record.date);
-                }
-            }
-        }*/
         
         if("Daily".equalsIgnoreCase(size)) {
             for(List<Weather> innerMonth : WeatherDisplay.allWeather ) {

@@ -8,8 +8,8 @@ package weatherdisplay;
 import java.util.Calendar;
 
 /**
- *
- * @author 1018560
+ * The container for all associated weather data for a given record.
+ * @authors Allison Bodvig, John Mangold, Joseph Mowry
  */
 public class Weather {
     public String date;

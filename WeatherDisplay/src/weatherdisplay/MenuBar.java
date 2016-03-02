@@ -23,8 +23,8 @@ import static oracle.jrockit.jfr.events.Bits.doubleValue;
 import org.xml.sax.SAXException;
 
 /**
- *
- * @author 1018560
+ * This creates the menubar and its associated components.
+ * @authors Allison Bodvig, John Mangold, Joseph Mowry
  */
 public class MenuBar extends JMenuBar {
     private File extraFile;
@@ -32,7 +32,10 @@ public class MenuBar extends JMenuBar {
     public MenuBar() {
         createMenuBar();
     }
-    
+    /**
+     * Sets up the menubar components. This also handles various listeners and
+     * calculates the data accordingly.
+     */
     private void createMenuBar() {
         JMenu file = new JMenu("File");
         file.setMnemonic(KeyEvent.VK_F);
@@ -432,15 +435,15 @@ public class MenuBar extends JMenuBar {
             }
             
             JOptionPane.showMessageDialog(frame, 
-                    "Average Temperature: " + df.format(tempAverage) + 
-                    "\n\nHigh Temperature: " + df.format(highTemp) + 
+                    "Average Temperature: " + df.format(tempAverage) + " Farenheit" + 
+                    "\n\nHigh Temperature: " + df.format(highTemp) + " Farenheit" +
                     "\nOccured on " + highdate +    
-                    "\n\nLow Temperature: " + df.format(lowTemp) +
+                    "\n\nLow Temperature: " + df.format(lowTemp) +" Farenheit" +
                     "\nOccured on " + lowdate +         
-                    "\n\nAverage Wind Speed: " + df.format(windAverage) +
-                    "\n\nMaximum Wind Gust: " + df.format(maxWindSpeed) +
+                    "\n\nAverage Wind Speed: " + df.format(windAverage) + " mph" +
+                    "\n\nMaximum Wind Gust: " + df.format(maxWindSpeed) + " mph" +
                     "\nOccured on " + winddate +
-                    "\n\nTotal Rainfall: " + df.format(totalrain) +
+                    "\n\nTotal Rainfall: " + df.format(totalrain) + " inches" +
                     "\n\nPrevailing Wind Direction: " + windDir +
                     "\n\n",
                     "Statistics", JOptionPane.PLAIN_MESSAGE);
@@ -450,13 +453,33 @@ public class MenuBar extends JMenuBar {
         
         JMenu help = new JMenu("Help");
         help.setMnemonic(KeyEvent.VK_H);
+               
         
         JMenuItem instructionsMenuItem = new JMenuItem("Instructions");
         instructionsMenuItem.setMnemonic(KeyEvent.VK_H);
+        instructionsMenuItem.addActionListener((ActionEvent event) -> {
+            Component frame = new JFrame();
+            JOptionPane.showMessageDialog(frame,
+                    "Program Usage:" +
+                    "\nUse the combo box to select which data element to display" +
+                    "\nClick through the tabs to show different amounts of data" +
+                    "\nClicking the Next or Previuos buttons will print the next or previous data set" +
+                    "\nGoing to Calculations and clicking statistics will show calculations for the data set that is graphed" +
+                    "\nYou may add xml files by choosing File then Open and selecting and xml file"        
+                    );
+            
+        });
         
         JMenuItem aboutMenuItem = new JMenuItem("About");
         aboutMenuItem.setMnemonic(KeyEvent.VK_A);
         aboutMenuItem.setToolTipText("Information about the developers");
+        aboutMenuItem.addActionListener((ActionEvent event) -> {
+            Component frame = new JFrame();
+            JOptionPane.showMessageDialog(frame,
+                    "This program was created by John Mangold, Joe Mowry, and Allison Bodvig"        
+                    );
+            
+        });
         
         help.add(instructionsMenuItem);
         help.add(aboutMenuItem);
