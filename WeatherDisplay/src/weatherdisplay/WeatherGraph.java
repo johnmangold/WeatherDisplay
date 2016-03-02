@@ -112,7 +112,7 @@ public class WeatherGraph extends JPanel {
         else if ("Weekly".equalsIgnoreCase(size)) {
             for(List<Weather> innerMonth : WeatherDisplay.allWeather ) {
                 for(Weather record : innerMonth){
-                    if( record.dateTime.get(Calendar.WEEK_OF_MONTH) == WeatherDisplay.allWeather.get(month).get(day).dateTime.get(Calendar.WEEK_OF_MONTH)) {
+                    if( record.dateTime.get(Calendar.WEEK_OF_MONTH) == WeatherDisplay.week) {
                         try{
                             WeatherDisplay.wds.temperatureDatasetWeekly.addValue(Double.parseDouble(record.temperature), series1, record.date);
                             WeatherDisplay.wds.humidityDatasetWeekly.addValue(Double.parseDouble(record.humidity), series2, record.date);
