@@ -30,24 +30,28 @@ public class WeatherDataset {
     static DefaultCategoryDataset windspeedDatasetDaily = new DefaultCategoryDataset();
     static DefaultCategoryDataset uvIndexDatasetDaily = new DefaultCategoryDataset();
     static DefaultCategoryDataset rainfallDatasetDaily = new DefaultCategoryDataset();
+    static DefaultCategoryDataset windgustDatasetDaily = new DefaultCategoryDataset();
     static DefaultCategoryDataset temperatureDatasetWeekly = new DefaultCategoryDataset();
     static DefaultCategoryDataset humidityDatasetWeekly = new DefaultCategoryDataset();
     static DefaultCategoryDataset barometricDatasetWeekly = new DefaultCategoryDataset();
     static DefaultCategoryDataset windspeedDatasetWeekly = new DefaultCategoryDataset();
     static DefaultCategoryDataset uvIndexDatasetWeekly = new DefaultCategoryDataset();
     static DefaultCategoryDataset rainfallDatasetWeekly = new DefaultCategoryDataset();
+    static DefaultCategoryDataset windgustDatasetWeekly = new DefaultCategoryDataset();
     static DefaultCategoryDataset temperatureDatasetMonthly = new DefaultCategoryDataset();
     static DefaultCategoryDataset humidityDatasetMonthly = new DefaultCategoryDataset();
     static DefaultCategoryDataset barometricDatasetMonthly = new DefaultCategoryDataset();
     static DefaultCategoryDataset windspeedDatasetMonthly = new DefaultCategoryDataset();
     static DefaultCategoryDataset uvIndexDatasetMonthly = new DefaultCategoryDataset();
     static DefaultCategoryDataset rainfallDatasetMonthly = new DefaultCategoryDataset();
+    static DefaultCategoryDataset windgustDatasetMonthly = new DefaultCategoryDataset();
     static DefaultCategoryDataset temperatureDatasetYearly = new DefaultCategoryDataset();
     static DefaultCategoryDataset humidityDatasetYearly = new DefaultCategoryDataset();
     static DefaultCategoryDataset barometricDatasetYearly = new DefaultCategoryDataset();
     static DefaultCategoryDataset windspeedDatasetYearly = new DefaultCategoryDataset();
     static DefaultCategoryDataset uvIndexDatasetYearly = new DefaultCategoryDataset();
     static DefaultCategoryDataset rainfallDatasetYearly = new DefaultCategoryDataset();
+    static DefaultCategoryDataset windgustDatasetYearly = new DefaultCategoryDataset();
     
     public WeatherDataset() {
     }
@@ -89,6 +93,7 @@ public class WeatherDataset {
                 windspeedDatasetDaily = new DefaultCategoryDataset();
                 uvIndexDatasetDaily = new DefaultCategoryDataset();
                 rainfallDatasetDaily = new DefaultCategoryDataset();
+                windgustDatasetDaily = new DefaultCategoryDataset();
                 break;
             case "Weekly":
                 temperatureDatasetWeekly = new DefaultCategoryDataset();
@@ -97,6 +102,7 @@ public class WeatherDataset {
                 windspeedDatasetWeekly = new DefaultCategoryDataset();
                 uvIndexDatasetWeekly = new DefaultCategoryDataset();
                 rainfallDatasetWeekly = new DefaultCategoryDataset();
+                windgustDatasetWeekly = new DefaultCategoryDataset();
                 break;
             case "Monthly":
                 temperatureDatasetMonthly = new DefaultCategoryDataset();
@@ -105,6 +111,7 @@ public class WeatherDataset {
                 windspeedDatasetMonthly = new DefaultCategoryDataset();
                 uvIndexDatasetMonthly = new DefaultCategoryDataset();
                 rainfallDatasetMonthly = new DefaultCategoryDataset();
+                windgustDatasetMonthly = new DefaultCategoryDataset();
                 break;
             case "Yearly":
                 temperatureDatasetYearly = new DefaultCategoryDataset();
@@ -113,6 +120,7 @@ public class WeatherDataset {
                 windspeedDatasetYearly = new DefaultCategoryDataset();
                 uvIndexDatasetYearly = new DefaultCategoryDataset();
                 rainfallDatasetYearly = new DefaultCategoryDataset();
+                windgustDatasetYearly = new DefaultCategoryDataset();
                 break;
         }
     }

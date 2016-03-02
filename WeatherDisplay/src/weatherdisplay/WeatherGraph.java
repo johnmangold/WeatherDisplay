@@ -78,6 +78,7 @@ public class WeatherGraph extends JPanel {
         final String series4 = "Wind Speed";
         final String series5 = "UV Index";
         final String series6 = "Rainfall";
+        final String series7 = "Wind Gust";
         
         if("Daily".equalsIgnoreCase(size)) {
             for(List<Weather> innerMonth : WeatherDisplay.allWeather ) {
@@ -90,6 +91,7 @@ public class WeatherGraph extends JPanel {
                             WeatherDisplay.wds.windspeedDatasetDaily.addValue(Double.parseDouble(record.windspeed), series4, record.date);
                             WeatherDisplay.wds.uvIndexDatasetDaily.addValue(Double.parseDouble(record.uvindex), series5, record.date);
                             WeatherDisplay.wds.rainfallDatasetDaily.addValue(Double.parseDouble(record.rainfall), series6, record.date);
+                            WeatherDisplay.wds.windgustDatasetDaily.addValue(Double.parseDouble(record.windgust), series7, record.date);
                         }catch (NullPointerException ex){
                             WeatherDisplay.wds.rainfallDatasetDaily.addValue(1, series6, record.date);
                         }
@@ -108,6 +110,7 @@ public class WeatherGraph extends JPanel {
                             WeatherDisplay.wds.windspeedDatasetWeekly.addValue(Double.parseDouble(record.windspeed), series4, record.date);
                             WeatherDisplay.wds.uvIndexDatasetWeekly.addValue(Double.parseDouble(record.uvindex), series5, record.date);
                             WeatherDisplay.wds.rainfallDatasetWeekly.addValue(Double.parseDouble(record.rainfall), series6, record.date);
+                            WeatherDisplay.wds.windgustDatasetWeekly.addValue(Double.parseDouble(record.windgust), series7, record.date);
                         }catch (NullPointerException ex){
                             WeatherDisplay.wds.rainfallDatasetWeekly.addValue(1, series6, record.date);
                         }
@@ -126,6 +129,7 @@ public class WeatherGraph extends JPanel {
                             WeatherDisplay.wds.windspeedDatasetMonthly.addValue(Double.parseDouble(record.windspeed), series4, record.date);
                             WeatherDisplay.wds.uvIndexDatasetMonthly.addValue(Double.parseDouble(record.uvindex), series5, record.date);
                             WeatherDisplay.wds.rainfallDatasetMonthly.addValue(Double.parseDouble(record.rainfall), series6, record.date);
+                            WeatherDisplay.wds.windgustDatasetMonthly.addValue(Double.parseDouble(record.windgust), series7, record.date);
                         }catch (NullPointerException ex){
                             WeatherDisplay.wds.rainfallDatasetMonthly.addValue(1, series6, record.date);
                         }
@@ -144,6 +148,7 @@ public class WeatherGraph extends JPanel {
                             WeatherDisplay.wds.windspeedDatasetYearly.addValue(Double.parseDouble(record.windspeed), series4, record.date);
                             WeatherDisplay.wds.uvIndexDatasetYearly.addValue(Double.parseDouble(record.uvindex), series5, record.date);
                             WeatherDisplay.wds.rainfallDatasetYearly.addValue(Double.parseDouble(record.rainfall), series6, record.date);
+                            WeatherDisplay.wds.windgustDatasetYearly.addValue(Double.parseDouble(record.windgust), series7, record.date);
                         }catch (NullPointerException ex){
                             WeatherDisplay.wds.rainfallDatasetYearly.addValue(1, series6, record.date);
                         }
