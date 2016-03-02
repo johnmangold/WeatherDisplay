@@ -430,15 +430,15 @@ public class MenuBar extends JMenuBar {
             }
             
             JOptionPane.showMessageDialog(frame, 
-                    "Average Temperature: " + df.format(tempAverage) + 
-                    "\n\nHigh Temperature: " + df.format(highTemp) + 
+                    "Average Temperature: " + df.format(tempAverage) + " Farenheit" + 
+                    "\n\nHigh Temperature: " + df.format(highTemp) + " Farenheit" +
                     "\nOccured on " + highdate +    
-                    "\n\nLow Temperature: " + df.format(lowTemp) +
+                    "\n\nLow Temperature: " + df.format(lowTemp) +" Farenheit" +
                     "\nOccured on " + lowdate +         
-                    "\n\nAverage Wind Speed: " + df.format(windAverage) +
-                    "\n\nMaximum Wind Gust: " + df.format(maxWindSpeed) +
+                    "\n\nAverage Wind Speed: " + df.format(windAverage) + " mph" +
+                    "\n\nMaximum Wind Gust: " + df.format(maxWindSpeed) + " mph" +
                     "\nOccured on " + winddate +
-                    "\n\nTotal Rainfall: " + df.format(totalrain) +
+                    "\n\nTotal Rainfall: " + df.format(totalrain) + " inches" +
                     "\n\nPrevailing Wind Direction: " + windDir +
                     "\n\n",
                     "Statistics", JOptionPane.PLAIN_MESSAGE);
