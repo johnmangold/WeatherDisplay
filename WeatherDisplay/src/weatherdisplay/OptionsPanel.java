@@ -25,18 +25,10 @@ public class OptionsPanel extends JPanel {
         DataFields.setMaximumRowCount(10);
         DataFields.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Temperature", "Humidity", "Barometer", "Wind Speed", "UV Index", "Rainfall" }));
         DataFields.setSelectedIndex(0);
-       
-        
-        /*WeatherGraph DailyTab = new WeatherGraph("Day");
-        WeatherGraph WeeklyTab = new WeatherGraph("Week");
-        WeatherGraph MonthlyTab = new WeatherGraph("Month");
-        WeatherGraph YearlyTab = new WeatherGraph("Year");*/
         
         NextData = new javax.swing.JButton();
         PrevData = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-
-        //createChartFromDataset(WeatherDisplay.wds.temperatureDataset, "Day", "Temperature");
         
         WeatherDisplay.wg.createSmallerDataset("Daily", WeatherDisplay.day, WeatherDisplay.month, WeatherDisplay.year);
         DataPane.addTab("Daily", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.temperatureDatasetDaily, "Day", "Temperature")));
@@ -50,52 +42,6 @@ public class OptionsPanel extends JPanel {
         WeatherDisplay.wg.createSmallerDataset("Yearly", WeatherDisplay.day, WeatherDisplay.month, WeatherDisplay.year);
         DataPane.addTab("Yearly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.temperatureDatasetYearly, "Year", "Temperature")));
         
-        /*DataPane.addChangeListener((ChangeEvent e) -> {
-            String currentTab = "Weekly";
-            System.out.println(currentTab);
-            switch( currentTab ) {
-                case "Daily":
-                    WeatherDisplay.wds.clearDataset();
-                    WeatherDisplay.wg.createSmallerDataset("Daily", WeatherDisplay.day, WeatherDisplay.month, WeatherDisplay.year);
-                    DataPane.removeAll();
-                    DataPane.addTab("Daily", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.temperatureDataset, "Day", "Temperature")));
-                    DataPane.addTab("Weekly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.temperatureDataset, "Week", "Temperature")));
-                    DataPane.addTab("Monthly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.temperatureDataset, "Month", "Temperature")));
-                    DataPane.addTab("Yearly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.temperatureDataset, "Year", "Temperature")));
-                    DataPane.validate();
-                    break;
-                case "Weekly":
-                    WeatherDisplay.wds.clearDataset();
-                    WeatherDisplay.wg.createSmallerDataset("Weekly", WeatherDisplay.day, WeatherDisplay.month, WeatherDisplay.year);
-                    DataPane.removeAll();
-                    DataPane.addTab("Daily", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.humidityDataset, "Day", "Humidity")));
-                    DataPane.addTab("Weekly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.humidityDataset, "Week", "Humidity")));
-                    DataPane.addTab("Monthly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.humidityDataset, "Month", "Humidity")));
-                    DataPane.addTab("Yearly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.humidityDataset, "Year", "Humidity")));
-                    DataPane.validate();
-                    break;
-                case "Monthly":
-                    WeatherDisplay.wds.clearDataset();
-                    WeatherDisplay.wg.createSmallerDataset("Monthly", WeatherDisplay.day, WeatherDisplay.month, WeatherDisplay.year);
-                    DataPane.removeAll();
-                    DataPane.addTab("Daily", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.barometricDataset, "Day", "Barometer")));
-                    DataPane.addTab("Weekly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.barometricDataset, "Week", "Barometer")));
-                    DataPane.addTab("Monthly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.barometricDataset, "Month", "Barometer")));
-                    DataPane.addTab("Yearly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.barometricDataset, "Year", "Barometer")));
-                    DataPane.validate();
-                    break;
-                case "Yearly":
-                    WeatherDisplay.wds.clearDataset();
-                    WeatherDisplay.wg.createSmallerDataset("Yearly", WeatherDisplay.day, WeatherDisplay.month, WeatherDisplay.year);
-                    DataPane.removeAll();
-                    DataPane.addTab("Daily", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.windspeedDataset, "Day", "Wind Speed")));
-                    DataPane.addTab("Weekly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.windspeedDataset, "Week", "Wind Speed")));
-                    DataPane.addTab("Monthly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.windspeedDataset, "Month", "Wind Speed")));
-                    DataPane.addTab("Yearly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.windspeedDataset, "Year", "Wind Speed")));
-                    DataPane.validate();
-                    break;
-            }
-        });*/
 
          DataFields.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -224,7 +170,7 @@ public class OptionsPanel extends JPanel {
                 .addComponent(DataPane)
                 .addContainerGap())    
         );
-    }// </editor-fold>                        
+    }                     
      /**
       * Handles each display range for each tab and iterates to the next record
       * set.
