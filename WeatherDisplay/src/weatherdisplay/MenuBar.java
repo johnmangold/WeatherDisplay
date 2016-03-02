@@ -62,7 +62,9 @@ public class MenuBar extends JMenuBar {
                 try {
                     for(File each : list ) {
                         if(each.toString().endsWith(".xml") || each.toString().endsWith(".XML")) {
-                            WeatherDisplay.allWeather.add(reader.read(each.toString()));
+                            if( !file.toString().endsWith("ild.xml") ) {
+                                WeatherDisplay.allWeather.add(reader.read(each.toString()));
+                            }
                         }
                     }
                 } catch (ParserConfigurationException | SAXException | IOException | ParseException ex) {

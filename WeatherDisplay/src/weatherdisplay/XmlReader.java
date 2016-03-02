@@ -36,7 +36,12 @@ public class XmlReader {
     
     public XmlReader(File[] fileList) throws ParserConfigurationException, SAXException, IOException, ParseException {
         for (File file : fileList) {
-            allWeather.add(this.read(file.toString()));
+            if(file.toString().endsWith(".xml") || file.toString().endsWith(".XML")) {
+                if( !file.toString().endsWith("ild.xml") ) {
+                    System.out.println(file.toString());
+                    allWeather.add(this.read(file.toString()));
+                }
+            }
         }
     }
     

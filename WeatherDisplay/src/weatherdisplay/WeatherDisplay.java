@@ -25,7 +25,7 @@ import org.xml.sax.SAXException;
 public class WeatherDisplay {
 
     public static List< List<Weather> > allWeather;
-    private static final File main = new File("xml/");
+    private static final File main = new File("./");
     private static final File[] listOfFiles = main.listFiles();
     public static String dataOption = "Temperature";
     public static Boolean freshData = true;
