@@ -36,66 +36,122 @@ public class OptionsPanel extends JPanel {
         jLabel1 = new javax.swing.JLabel();
 
         //createChartFromDataset(WeatherDisplay.wds.temperatureDataset, "Day", "Temperature");
-        DataPane.addTab("Daily", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.temperatureDataset, "Day", "Temperature")));
-        DataPane.addTab("Weekly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.temperatureDataset, "Week", "Temperature")));
-        DataPane.addTab("Monthly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.temperatureDataset, "Month", "Temperature")));
-        DataPane.addTab("Yearly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.temperatureDataset, "Year", "Temperature")));
+        
+        WeatherDisplay.wg.createSmallerDataset("Daily", WeatherDisplay.day, WeatherDisplay.month, WeatherDisplay.year);
+        DataPane.addTab("Daily", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.temperatureDatasetDaily, "Day", "Temperature")));
+        
+        WeatherDisplay.wg.createSmallerDataset("Weekly", WeatherDisplay.day, WeatherDisplay.month, WeatherDisplay.year);
+        DataPane.addTab("Weekly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.temperatureDatasetWeekly, "Week", "Temperature")));
+        
+        WeatherDisplay.wg.createSmallerDataset("Monthly", WeatherDisplay.day, WeatherDisplay.month, WeatherDisplay.year);
+        DataPane.addTab("Monthly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.temperatureDatasetMonthly, "Month", "Temperature")));
+        
+        WeatherDisplay.wg.createSmallerDataset("Yearly", WeatherDisplay.day, WeatherDisplay.month, WeatherDisplay.year);
+        DataPane.addTab("Yearly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.temperatureDatasetYearly, "Year", "Temperature")));
+        
+        /*DataPane.addChangeListener((ChangeEvent e) -> {
+            String currentTab = "Weekly";
+            System.out.println(currentTab);
+            switch( currentTab ) {
+                case "Daily":
+                    WeatherDisplay.wds.clearDataset();
+                    WeatherDisplay.wg.createSmallerDataset("Daily", WeatherDisplay.day, WeatherDisplay.month, WeatherDisplay.year);
+                    DataPane.removeAll();
+                    DataPane.addTab("Daily", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.temperatureDataset, "Day", "Temperature")));
+                    DataPane.addTab("Weekly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.temperatureDataset, "Week", "Temperature")));
+                    DataPane.addTab("Monthly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.temperatureDataset, "Month", "Temperature")));
+                    DataPane.addTab("Yearly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.temperatureDataset, "Year", "Temperature")));
+                    DataPane.validate();
+                    break;
+                case "Weekly":
+                    WeatherDisplay.wds.clearDataset();
+                    WeatherDisplay.wg.createSmallerDataset("Weekly", WeatherDisplay.day, WeatherDisplay.month, WeatherDisplay.year);
+                    DataPane.removeAll();
+                    DataPane.addTab("Daily", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.humidityDataset, "Day", "Humidity")));
+                    DataPane.addTab("Weekly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.humidityDataset, "Week", "Humidity")));
+                    DataPane.addTab("Monthly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.humidityDataset, "Month", "Humidity")));
+                    DataPane.addTab("Yearly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.humidityDataset, "Year", "Humidity")));
+                    DataPane.validate();
+                    break;
+                case "Monthly":
+                    WeatherDisplay.wds.clearDataset();
+                    WeatherDisplay.wg.createSmallerDataset("Monthly", WeatherDisplay.day, WeatherDisplay.month, WeatherDisplay.year);
+                    DataPane.removeAll();
+                    DataPane.addTab("Daily", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.barometricDataset, "Day", "Barometer")));
+                    DataPane.addTab("Weekly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.barometricDataset, "Week", "Barometer")));
+                    DataPane.addTab("Monthly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.barometricDataset, "Month", "Barometer")));
+                    DataPane.addTab("Yearly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.barometricDataset, "Year", "Barometer")));
+                    DataPane.validate();
+                    break;
+                case "Yearly":
+                    WeatherDisplay.wds.clearDataset();
+                    WeatherDisplay.wg.createSmallerDataset("Yearly", WeatherDisplay.day, WeatherDisplay.month, WeatherDisplay.year);
+                    DataPane.removeAll();
+                    DataPane.addTab("Daily", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.windspeedDataset, "Day", "Wind Speed")));
+                    DataPane.addTab("Weekly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.windspeedDataset, "Week", "Wind Speed")));
+                    DataPane.addTab("Monthly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.windspeedDataset, "Month", "Wind Speed")));
+                    DataPane.addTab("Yearly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.windspeedDataset, "Year", "Wind Speed")));
+                    DataPane.validate();
+                    break;
+            }
+        });*/
 
          DataFields.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DataPane.removeAll();
-                DataPane.addTab("Daily", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.temperatureDataset, "Day", "Temperature")));
-                DataPane.addTab("Weekly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.temperatureDataset, "Week", "Temperature")));
-                DataPane.addTab("Monthly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.temperatureDataset, "Month", "Temperature")));
-                DataPane.addTab("Yearly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.temperatureDataset, "Year", "Temperature")));
-                DataPane.validate();
+                int selectedPane = DataPane.getSelectedIndex();
                 switch( DataFields.getSelectedItem().toString()) {
                     case "Temperature":
                         DataPane.removeAll();
-                        DataPane.addTab("Daily", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.temperatureDataset, "Day", "Temperature")));
-                        DataPane.addTab("Weekly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.temperatureDataset, "Week", "Temperature")));
-                        DataPane.addTab("Monthly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.temperatureDataset, "Month", "Temperature")));
-                        DataPane.addTab("Yearly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.temperatureDataset, "Year", "Temperature")));
+                        DataPane.addTab("Daily", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.temperatureDatasetDaily, "Day", "Temperature")));
+                        DataPane.addTab("Weekly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.temperatureDatasetWeekly, "Week", "Temperature")));
+                        DataPane.addTab("Monthly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.temperatureDatasetMonthly, "Month", "Temperature")));
+                        DataPane.addTab("Yearly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.temperatureDatasetYearly, "Year", "Temperature")));
+                        DataPane.setSelectedIndex(selectedPane);
                         DataPane.validate();
                         break;
                     case "Humidity":
                         DataPane.removeAll();
-                        DataPane.addTab("Daily", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.humidityDataset, "Day", "Humidity")));
-                        DataPane.addTab("Weekly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.humidityDataset, "Week", "Humidity")));
-                        DataPane.addTab("Monthly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.humidityDataset, "Month", "Humidity")));
-                        DataPane.addTab("Yearly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.humidityDataset, "Year", "Humidity")));
+                        DataPane.addTab("Daily", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.humidityDatasetDaily, "Day", "Humidity")));
+                        DataPane.addTab("Weekly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.humidityDatasetWeekly, "Week", "Humidity")));
+                        DataPane.addTab("Monthly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.humidityDatasetMonthly, "Month", "Humidity")));
+                        DataPane.addTab("Yearly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.humidityDatasetYearly, "Year", "Humidity")));
+                        DataPane.setSelectedIndex(selectedPane);
                         DataPane.validate();
                         break;
                     case "Barometer":
                         DataPane.removeAll();
-                        DataPane.addTab("Daily", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.barometricDataset, "Day", "Barometer")));
-                        DataPane.addTab("Weekly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.barometricDataset, "Week", "Barometer")));
-                        DataPane.addTab("Monthly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.barometricDataset, "Month", "Barometer")));
-                        DataPane.addTab("Yearly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.barometricDataset, "Year", "Barometer")));
+                        DataPane.addTab("Daily", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.barometricDatasetDaily, "Day", "Barometer")));
+                        DataPane.addTab("Weekly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.barometricDatasetWeekly, "Week", "Barometer")));
+                        DataPane.addTab("Monthly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.barometricDatasetMonthly, "Month", "Barometer")));
+                        DataPane.addTab("Yearly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.barometricDatasetYearly, "Year", "Barometer")));
+                        DataPane.setSelectedIndex(selectedPane);
                         DataPane.validate();
                         break;
                     case "Wind Speed":
                         DataPane.removeAll();
-                        DataPane.addTab("Daily", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.windspeedDataset, "Day", "Wind Speed")));
-                        DataPane.addTab("Weekly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.windspeedDataset, "Week", "Wind Speed")));
-                        DataPane.addTab("Monthly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.windspeedDataset, "Month", "Wind Speed")));
-                        DataPane.addTab("Yearly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.windspeedDataset, "Year", "Wind Speed")));
+                        DataPane.addTab("Daily", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.windspeedDatasetDaily, "Day", "Wind Speed")));
+                        DataPane.addTab("Weekly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.windspeedDatasetWeekly, "Week", "Wind Speed")));
+                        DataPane.addTab("Monthly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.windspeedDatasetMonthly, "Month", "Wind Speed")));
+                        DataPane.addTab("Yearly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.windspeedDatasetYearly, "Year", "Wind Speed")));
+                        DataPane.setSelectedIndex(selectedPane);
                         DataPane.validate();
                         break;
                     case "UV Index":
                         DataPane.removeAll();
-                        DataPane.addTab("Daily", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.uvIndexDataset, "Day", "UV Index")));
-                        DataPane.addTab("Weekly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.uvIndexDataset, "Week", "UV Index")));
-                        DataPane.addTab("Monthly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.uvIndexDataset, "Month", "UV Index")));
-                        DataPane.addTab("Yearly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.uvIndexDataset, "Year", "UV Index")));
+                        DataPane.addTab("Daily", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.uvIndexDatasetDaily, "Day", "UV Index")));
+                        DataPane.addTab("Weekly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.uvIndexDatasetWeekly, "Week", "UV Index")));
+                        DataPane.addTab("Monthly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.uvIndexDatasetMonthly, "Month", "UV Index")));
+                        DataPane.addTab("Yearly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.uvIndexDatasetYearly, "Year", "UV Index")));
+                        DataPane.setSelectedIndex(selectedPane);
                         DataPane.validate();
                         break;
                     case "Rainfall":
                         DataPane.removeAll();
-                        DataPane.addTab("Daily", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.rainfallDataset, "Day", "Rainfall")));
-                        DataPane.addTab("Weekly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.rainfallDataset, "Week", "Rainfall")));
-                        DataPane.addTab("Monthly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.rainfallDataset, "Month", "Rainfall")));
-                        DataPane.addTab("Yearly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.rainfallDataset, "Year", "Rainfall")));
+                        DataPane.addTab("Daily", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.rainfallDatasetDaily, "Day", "Rainfall")));
+                        DataPane.addTab("Weekly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.rainfallDatasetWeekly, "Week", "Rainfall")));
+                        DataPane.addTab("Monthly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.rainfallDatasetMonthly, "Month", "Rainfall")));
+                        DataPane.addTab("Yearly", new JPanel().add(WeatherDisplay.wds.createChartFromDataset(WeatherDisplay.wds.rainfallDatasetYearly, "Year", "Rainfall")));
+                        DataPane.setSelectedIndex(selectedPane);
                         DataPane.validate();
                         break;
                 }
@@ -117,8 +173,7 @@ public class OptionsPanel extends JPanel {
         PrevData.setToolTipText("View Previous Data Set");
         PrevData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                //PrevDataActionPerformed(evt);
-                
+                PrevDataActionPerformed(evt);
             }
         });
 
@@ -171,43 +226,22 @@ public class OptionsPanel extends JPanel {
     }// </editor-fold>                        
       
     private void NextDataActionPerformed(java.awt.event.ActionEvent evt) {                                         
-     // TODO add your handling code here:
-        //go to next data set
-        //check for end of set
-        String title;
-        
-        //get the title of the selected tab
-        title = DataPane.getTitleAt(DataPane.getSelectedIndex());
-        /*****
+     
+        String title = DataPane.getTitleAt(DataPane.getSelectedIndex());
         switch (title) {
             case "Daily":
-                //set start to start + 1 and end to end + 1
-                WeatherDisplay.startIndex[1] = WeatherDisplay.startIndex[1] + 1;
-                WeatherDisplay.endIndex[1] = WeatherDisplay.startIndex[1];
-                //check for end of list, either no more data or go to next month                
+                WeatherDisplay.day += 1;
                 break;
             case "Weekly":
-                //set start to end + 1 and start to end + 7
-                WeatherDisplay.startIndex[1] = WeatherDisplay.endIndex[1] + 1;
-                WeatherDisplay.endIndex[1] = WeatherDisplay.endIndex[1] + 7;
-                //check for end of list, either no more data or go to next month 
+                WeatherDisplay.week += 1;
                 break;
             case "Monthly":
-                //go forward one list
-                WeatherDisplay.startIndex[0] = WeatherDisplay.startIndex[0] + 1;
-                WeatherDisplay.endIndex[0] = WeatherDisplay.startIndex[0];
-                WeatherDisplay.startIndex[1] = 0;
-//                find the last index for the given list
-//                WeatherDisplay.endIndex[1] = 
-                //check for first list index (ie 0)
+                WeatherDisplay.month += 1;
                 break;
             case "Yearly":
-                //set start to end + 1 and start to start + 12
-                WeatherDisplay.startIndex[0] = WeatherDisplay.endIndex[1] + 1;
-                WeatherDisplay.endIndex[0] = WeatherDisplay.endIndex[1] + 12;
-                //check for end of data
+                WeatherDisplay.year += 1;
                 break;
-        }  *****/
+        }
     } 
       
     private void PrevDataActionPerformed(java.awt.event.ActionEvent evt) {                                         

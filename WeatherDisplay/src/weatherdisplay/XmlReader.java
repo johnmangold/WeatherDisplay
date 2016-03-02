@@ -107,12 +107,6 @@ public class XmlReader {
                 weather.dateTime = Calendar.getInstance();
                 SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy", Locale.US);
                 weather.dateTime.setTime(sdf.parse(weather.date));
-                if(i == 0 && first == true) {
-                    WeatherDisplay.day = weather.dateTime.get(Calendar.DAY_OF_MONTH);
-                    WeatherDisplay.month = weather.dateTime.get(Calendar.MONTH);
-                    WeatherDisplay.year = weather.dateTime.get(Calendar.YEAR);
-                    first = false;
-                }
                 weatherList.add(weather);
             }
         }
