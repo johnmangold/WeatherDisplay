@@ -105,6 +105,15 @@ public class WeatherDisplay {
                 }
             }
         }
+        
+        if(allWeather.isEmpty()) {
+            JOptionPane.showMessageDialog( null,
+                    "You must select a directory containing xml files.\nThe program will now exit.",
+                    "Must Select Directory",
+                    JOptionPane.WARNING_MESSAGE);
+            System.exit(-1);
+        }
+        
         day = allWeather.get(0).get(0).dateTime.get(Calendar.DAY_OF_MONTH);
         week = allWeather.get(0).get(0).dateTime.get(Calendar.WEEK_OF_YEAR);
         month = allWeather.get(0).get(0).dateTime.get(Calendar.MONTH);
