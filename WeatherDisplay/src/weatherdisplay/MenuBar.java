@@ -65,7 +65,7 @@ public class MenuBar extends JMenuBar {
                 try {
                     for(File each : list ) {
                         if(each.toString().endsWith(".xml") || each.toString().endsWith(".XML")) {
-                            if( !file.toString().endsWith("ild.xml") ) {
+                            if( !each.toString().endsWith("ild.xml") ) {
                                 WeatherDisplay.allWeather.add(reader.read(each.toString()));
                             }
                         }

@@ -15,6 +15,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
@@ -36,7 +37,9 @@ public class WeatherDisplay {
     public static int day;
     public static int week;
     public static int month;
+    public static int startingMonth;
     public static int year;
+    public static int startingYear;
 
     //public static int[] startIndex = new int[2]; //holds the two indexes for the start data point
     //public static int[] endIndex = new int[2]; //holds the two indexes for the end data point
@@ -74,12 +77,40 @@ public class WeatherDisplay {
      * @throws ParseException 
      */
     private static void readDirXml() throws ParserConfigurationException, SAXException, IOException, ParseException {
+        File extraFile;
         XmlReader reader = new XmlReader(listOfFiles);
         allWeather = reader.allWeather;
+        if( allWeather.isEmpty() ) {
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Open directory containing XML files");
+            fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            fileChooser.setAcceptAllFileFilterUsed(false);
+            
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("xml files (*.xml)", "xml");
+            fileChooser.setFileFilter(filter);
+            if(fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+                extraFile = fileChooser.getSelectedFile();
+                File[] list = extraFile.listFiles();
+                XmlReader tempReader = new XmlReader();
+                try {
+                    for(File each : list ) {
+                        if(each.toString().endsWith(".xml") || each.toString().endsWith(".XML")) {
+                            if( !each.toString().endsWith("ild.xml") ) {
+                                WeatherDisplay.allWeather.add(reader.read(each.toString()));
+                            }
+                        }
+                    }
+                } catch (ParserConfigurationException | SAXException | IOException | ParseException ex) {
+                    Logger.getLogger(MenuBar.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
         day = allWeather.get(0).get(0).dateTime.get(Calendar.DAY_OF_MONTH);
         week = allWeather.get(0).get(0).dateTime.get(Calendar.WEEK_OF_YEAR);
         month = allWeather.get(0).get(0).dateTime.get(Calendar.MONTH);
+        startingMonth = month;
         year = allWeather.get(0).get(0).dateTime.get(Calendar.YEAR);
+        startingYear = year;
         wg = new WeatherGraph("It doesn't matter, it's not going to use it.");
     }
     /**

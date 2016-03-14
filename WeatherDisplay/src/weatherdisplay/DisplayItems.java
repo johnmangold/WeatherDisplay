@@ -31,35 +31,35 @@ public class DisplayItems extends JPanel {
         Random random = new Random();
         int min = 0;
         int outMax = WeatherDisplay.allWeather.size();
-        int inMax;
-        int outRand;
-        int inRand;
+        int outRand = random.nextInt(outMax);
+        int inMax = WeatherDisplay.allWeather.get(outRand).size();
+        int inRand = random.nextInt(inMax);
         
         a.gridx = 0;
         a.gridy = 0;
         a.insets = new Insets(0, 0, 0, 10);
         
-        this.add(createTemperature(WeatherDisplay.allWeather.get(random.nextInt(72)).get(random.nextInt(200)).temperature, WeatherDisplay.allWeather.get(random.nextInt(72)).get(random.nextInt(200)).heatindex), a);
+        this.add(createTemperature(WeatherDisplay.allWeather.get(outRand).get(inRand).temperature, WeatherDisplay.allWeather.get(outRand).get(inRand).heatindex), a);
         
         a.gridx = 1;
         a.gridy = 0;
         a.insets = new Insets(0, 0, 0, 10);
-        this.add(createWindDirection(WeatherDisplay.allWeather.get(random.nextInt(72)).get(random.nextInt(200)).winddirection, WeatherDisplay.allWeather.get(random.nextInt(72)).get(random.nextInt(200)).windchill), a);
+        this.add(createWindDirection(WeatherDisplay.allWeather.get(outRand).get(inRand).winddirection, WeatherDisplay.allWeather.get(outRand).get(inRand).windchill), a);
         
         a.gridx = 2;
         a.gridy = 0;
         a.insets = new Insets(0, 0, 0, 10);
-        this.add(createSpeed(WeatherDisplay.allWeather.get(random.nextInt(72)).get(random.nextInt(200)).windspeed, WeatherDisplay.allWeather.get(random.nextInt(72)).get(random.nextInt(200)).windgust), a);
+        this.add(createSpeed(WeatherDisplay.allWeather.get(outRand).get(inRand).windspeed, WeatherDisplay.allWeather.get(outRand).get(inRand).windgust), a);
         
         a.gridx = 3;
         a.gridy = 0;
         a.insets = new Insets(0, 0, 0, 10);
-        this.add(createRainfall(WeatherDisplay.allWeather.get(random.nextInt(72)).get(random.nextInt(200)).rainfall, WeatherDisplay.allWeather.get(random.nextInt(72)).get(random.nextInt(200)).humidity), a);
+        this.add(createRainfall(WeatherDisplay.allWeather.get(outRand).get(inRand).rainfall, WeatherDisplay.allWeather.get(outRand).get(inRand).humidity), a);
         
         a.gridx = 4;
         a.gridy =0;
         a.insets = new Insets(0, 0, 0, 0);
-        this.add(createPressure(WeatherDisplay.allWeather.get(random.nextInt(72)).get(random.nextInt(200)).barometer, WeatherDisplay.allWeather.get(random.nextInt(72)).get(random.nextInt(200)).uvindex), a);
+        this.add(createPressure(WeatherDisplay.allWeather.get(outRand).get(inRand).barometer, WeatherDisplay.allWeather.get(outRand).get(inRand).uvindex), a);
     }
     /**
      * Creates and manages temperature and heat index values to attach to the

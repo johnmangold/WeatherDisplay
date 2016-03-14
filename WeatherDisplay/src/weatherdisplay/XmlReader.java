@@ -46,7 +46,6 @@ public class XmlReader {
         for (File file : fileList) {
             if(file.toString().endsWith(".xml") || file.toString().endsWith(".XML")) {
                 if( !file.toString().endsWith("ild.xml") ) {
-                    System.out.println(file.toString());
                     allWeather.add(this.read(file.toString()));
                 }
             }

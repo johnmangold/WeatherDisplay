@@ -272,22 +272,42 @@ public class OptionsPanel extends JPanel {
         int selectedPane = DataPane.getSelectedIndex();
         switch (title) {
             case "Daily":
-                WeatherDisplay.day -= 1;
+                if( WeatherDisplay.day == 1 ) {
+                    //WeatherDisplay.day = 0;
+                    break;
+                } else {
+                    WeatherDisplay.day -= 1;
+                }
                 WeatherDisplay.wds.clearDataset("Daily");
                 WeatherDisplay.wg.createSmallerDataset("Daily", WeatherDisplay.day, WeatherDisplay.month, WeatherDisplay.year);
                 break;
             case "Weekly":
-                WeatherDisplay.week -= 1;
+                if( WeatherDisplay.week == 1 ) {
+                    //WeatherDisplay.week = 0;
+                    break;
+                } else {
+                    WeatherDisplay.week -= 1;
+                }
                 WeatherDisplay.wds.clearDataset("Weekly");
                 WeatherDisplay.wg.createSmallerDataset("Weekly", WeatherDisplay.day, WeatherDisplay.month, WeatherDisplay.year);
                 break;
             case "Monthly":
-                WeatherDisplay.month -= 1;
+                if( WeatherDisplay.month == WeatherDisplay.startingMonth || WeatherDisplay.month == 1 ) {
+                    //WeatherDisplay.month = 0;
+                    break;
+                } else {
+                    WeatherDisplay.month -= 1;
+                }
                 WeatherDisplay.wds.clearDataset("Monthly");
                 WeatherDisplay.wg.createSmallerDataset("Monthly", WeatherDisplay.day, WeatherDisplay.month, WeatherDisplay.year);
                 break;
             case "Yearly":
-                WeatherDisplay.year -= 1;
+                if( WeatherDisplay.year == WeatherDisplay.startingYear ) {
+                    //WeatherDisplay.year = 0;
+                    break;
+                } else {
+                    WeatherDisplay.year -= 1;
+                }
                 WeatherDisplay.wds.clearDataset("Yearly");
                 WeatherDisplay.wg.createSmallerDataset("Yearly", WeatherDisplay.day, WeatherDisplay.month, WeatherDisplay.year);
                 break;
